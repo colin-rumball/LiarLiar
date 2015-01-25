@@ -14,6 +14,6 @@ public class Brawler_Enemy : MonoBehaviour {
 	void Update () 
 	{
 		float step = SPEED * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, new Vector3(0.0f, 0.0f, -1.0f), step);
+		transform.position = Vector3.MoveTowards(transform.position, new Vector3(0.0f, -1.45f, -1.0f), step);
 	}
 }

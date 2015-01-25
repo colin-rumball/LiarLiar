@@ -4,20 +4,17 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour 
 {
-	public Button startButton;
-
-	// Use this for initialization
-	void Start () 
+	public void StartGame()
 	{
-		startButton.onClick.AddListener(() => startButtonClicked());
+		Application.LoadLevel("Introduction");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void HowToPlay()
+	{
+		//Application.LoadLevel("Introduction");
 	}
-	
-	void startButtonClicked()
+
+	public void LeaderBoards()
 	{
 		//Application.LoadLevel("Introduction");
 	}

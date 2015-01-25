@@ -4,9 +4,13 @@ using System.Collections;
 
 public class Interrogation : MonoBehaviour 
 {
+	public GameObject cop_speechBubble;
 	public GameObject speechBubble;
 	public GameObject thoughtBubble;
+	public GameObject background;
 	public Transform canvas;
+
+	public Sprite Back, Front, Side;
 	
 	public TheGenerator answerGenerator;
 	
@@ -71,15 +75,15 @@ public class Interrogation : MonoBehaviour
 			if (rightSelection < 0)
 			{
 				bool rightSelected = false;
-				if (Input.GetKeyDown(KeyCode.J))
+				if (Input.GetKeyDown(KeyCode.LeftArrow))
 				{
 					rightSelected = true;
 					rightSelection = 0;
-				} else if (Input.GetKeyDown(KeyCode.L))
+				} else if (Input.GetKeyDown(KeyCode.RightArrow))
 				{
 					rightSelected = true;
 					rightSelection = 1;
-				} else if (Input.GetKeyDown(KeyCode.I))
+				} else if (Input.GetKeyDown(KeyCode.UpArrow))
 				{
 					rightSelected = true;
 					rightSelection = 2;
@@ -143,12 +147,15 @@ public class Interrogation : MonoBehaviour
 							pos = new Vector3(3*(Screen.width/4), Screen.height/4, 0.0f);
 							break;
 						case 3:
+							cop_speechBubble.SetActive(true);
+							cop_speechBubble.GetComponent<Animator>().enabled = true;
+							cop_speechBubble.GetComponent<SpeechBubble>().setText(sentence[i]);
 							pos = new Vector3(Screen.width/2, 3*(Screen.height/4), 0.0f);
 							break;
 					}
-					GameObject bub = (GameObject)Instantiate(speechBubble, pos,Quaternion.Euler(0, 0, 0));
-					bub.transform.SetParent(canvas);
-					bub.GetComponent<SpeechBubble>().setStoredText(sentence[i]);
+					//GameObject bub = (GameObject)Instantiate(speechBubble, pos,Quaternion.Euler(0, 0, 0));
+					//bub.transform.SetParent(canvas);
+					//bub.GetComponent<SpeechBubble>().setStoredText(sentence[i]);
 				}
 			}
 			if (currentBubble == timers.Length)

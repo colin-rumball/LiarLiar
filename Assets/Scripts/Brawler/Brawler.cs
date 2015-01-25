@@ -21,11 +21,11 @@ public class Brawler : MonoBehaviour {
 				Quaternion rot = Quaternion.Euler(0,0,0);
 				if (Random.Range(0, 2) == 1)
 				{
-					pos = new Vector3(12.0f, 0.0f, -1.0f);
+					pos = new Vector3(12.0f, -1.45f, -1.0f);
 					rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
 				} else
 				{
-					pos = new Vector3(-12, 0.0f, -1.0f);
+					pos = new Vector3(-12, -1.45f, -1.0f);
 					rot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 				}
 				Instantiate(enemy, pos, rot);
