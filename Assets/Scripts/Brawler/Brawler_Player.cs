@@ -4,10 +4,12 @@ using System.Collections;
 public class Brawler_Player : MonoBehaviour {
 
 	private float punchTimer = 0.0f;
+	private Animator anim; // Reference to the player's animator component.
+	private bool punched = false;
 
 	// Use this for initialization
 	void Start () {
-	
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -28,12 +30,18 @@ public class Brawler_Player : MonoBehaviour {
 					punch();
 				}
 			}
+		} else if (punched && punchTimer <= 0.35f)
+		{
+			anim.SetBool("Punching", false);
+			punched = false;
 		} else
 			punchTimer -= Time.deltaTime;
 	}
 	
 	void punch()
 	{
+		anim.SetBool("Punching", true);
+		punched = true;
 		Debug.DrawRay(transform.position, transform.right, Color.black);
 		RaycastHit hitInfo = new RaycastHit();
 		bool hit = Physics.Raycast(transform.position, transform.right, out hitInfo, 1);

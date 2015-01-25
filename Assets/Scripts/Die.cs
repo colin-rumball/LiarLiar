@@ -7,7 +7,8 @@ public class Die : MonoBehaviour {
 	{
 		if(other.tag == "Player" ||other.tag == "Player2")
 	{
-		Debug.Break ();
+			PlayerPrefs.SetString("Result", "Failure");
+			Application.LoadLevel("Interrogation");
 	}
 	}
 

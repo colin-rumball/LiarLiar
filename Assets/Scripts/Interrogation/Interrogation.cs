@@ -102,6 +102,7 @@ public class Interrogation : MonoBehaviour
 			{
 				if (gameTypeLeft)
 				{
+					PlayerPrefs.SetString("GameVariable", rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
 					Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
 					/*switch (leftBubbles[leftSelection].GetComponentInChildren<Text>().text)
 					{
@@ -126,7 +127,10 @@ public class Interrogation : MonoBehaviour
 							break;
 					}*/
 				} else
+				{
+					PlayerPrefs.SetString("GameVariable", leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
 					Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
+				}
 			}
 		} else
 		{
