@@ -16,6 +16,52 @@ public class TheGenerator : MonoBehaviour
 	void Update () {
 	
 	}
+
+	public int getTypeNumFromString(string str)
+	{
+		int num = -1;
+		switch (str)
+		{
+			case "Platformer":
+			num = 0;
+				break;
+			case "Runner": 
+			num = 1;
+				break;
+			case "Driver":
+			num = 2;
+				break;
+			case "FPS": 
+			num = 3;
+				break;
+			case "Avoidance": 
+			num = 4;
+				break;
+			case "Maze":
+			num = 5;
+				break;
+			case "QTE":
+			num = 6;
+				break;
+			case "Catcher":
+			num = 7;
+				break;
+			case "Brawler":
+			num = 8;
+				break;
+		}
+		return num;
+	}
+
+	public int getVariableNumFromString(string str)
+	{
+		for (int i = 0; i < gameVariables.Length; i++)
+		{
+			if (gameVariables[i] == str)
+				return i;
+		}
+		return -1;
+	}
 	
 	public string[] getGameTypes()
 	{

@@ -4,31 +4,25 @@ using System.Collections;
 
 public class Interrogation : MonoBehaviour 
 {
-	public GameObject cop_speechBubble;
-	public GameObject speechBubble;
-	public GameObject thoughtBubble;
-	public GameObject background;
-	public Transform canvas;
+	//public GameObject cop_speechBubble;
+	//public GameObject speechBubble;
+	//public GameObject thoughtBubble;
+	//public GameObject background;
+	//public Transform canvas;
 
-	public Sprite Back, Front, Side;
+	public GameObject[] leftBubbles = new GameObject[3];
+	public GameObject[] rightBubbles = new GameObject[3];
 	
 	public TheGenerator answerGenerator;
-	
-	private float[] timers = {2.0f, 4.0f, 8.0f};
-	private int[] speaker = {3, 1, 3};
+
+	public bool answersAvailable = false;
+
 	private string[] sentence = {"What do you think you're doing?",
 		"What are we going to do now?",
 		"Explain Yourself!"};
-	private int currentBubble = 0;
-	private bool answersAvailable = false;
-	
-	private float optionsTimer = 3.0f;
 	
 	private string[] leftAnswers = new string[3];
 	private string[] rightAnswers = new string[3];
-	
-	private GameObject[] leftBubbles = new GameObject[3];
-	private GameObject[] rightBubbles = new GameObject[3];
 	
 	private int leftSelection = -1;
 	private int rightSelection = -1;
@@ -36,13 +30,50 @@ public class Interrogation : MonoBehaviour
 	private bool gameTypeLeft = false;
 	
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		fillAnswerBubbles();
+		switch (PlayerPrefs.GetInt("Result"))
+		{
+		case 0:
+			break;
+		case 1:
+			break;
+		default:
+			break;
+		}
+		Debug.Log(PlayerPrefs.GetInt("Result"));
+	}
+
+	void fillAnswerBubbles()
+	{
+		if (Mathf.FloorToInt(Random.Range(0,2)) == 1)
+		{
+			leftAnswers = answerGenerator.getGameTypes();
+			rightAnswers = answerGenerator.getGameVariables();
+			gameTypeLeft = true;
+		} else
+		{
+			leftAnswers = answerGenerator.getGameVariables();
+			rightAnswers = answerGenerator.getGameTypes();
+			gameTypeLeft = false;
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			leftBubbles[i].GetComponentInChildren<Text>().text = leftAnswers[i];
+			rightBubbles[i].GetComponentInChildren<Text>().text = rightAnswers[i];
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			PlayerPrefs.SetInt("GameVariable", 2);
+			Application.LoadLevel("Driver");
+		}
+
 		if (answersAvailable)
 		{
 			if (leftSelection < 0)
@@ -79,11 +110,11 @@ public class Interrogation : MonoBehaviour
 				{
 					rightSelected = true;
 					rightSelection = 0;
-				} else if (Input.GetKeyDown(KeyCode.RightArrow))
+				} else if (Input.GetKeyDown(KeyCode.UpArrow))
 				{
 					rightSelected = true;
 					rightSelection = 1;
-				} else if (Input.GetKeyDown(KeyCode.UpArrow))
+				} else if (Input.GetKeyDown(KeyCode.RightArrow))
 				{
 					rightSelected = true;
 					rightSelection = 2;
@@ -102,125 +133,12 @@ public class Interrogation : MonoBehaviour
 			{
 				if (gameTypeLeft)
 				{
-					PlayerPrefs.SetString("GameVariable", rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
+					PlayerPrefs.SetInt("GameVariable", answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]));
 					Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
-					/*switch (leftBubbles[leftSelection].GetComponentInChildren<Text>().text)
-					{
-						case "Platformer":
-							break;
-						case "Runner": 
-							break;
-						case "Driver":
-							Application.LoadLevel("Driver");
-							break;
-						case "FPS": 
-							break;
-						case "Avoidance": 
-							break;
-						case "Maze":
-							break;
-						case "QTE":
-							break;
-						case "Catcher":
-							break;
-						case "Brawler":
-							break;
-					}*/
 				} else
 				{
-					PlayerPrefs.SetString("GameVariable", leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
+					PlayerPrefs.SetInt("GameVariable", answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]));
 					Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
-				}
-			}
-		} else
-		{
-			for (int i = currentBubble; i < timers.Length; i++)
-			{
-				if (timers[i] > 0.0f)
-					timers[i] -= Time.deltaTime;
-				if (timers[i] <= 0.0f)
-				{
-					currentBubble++;
-					Vector3 pos = Vector3.zero;
-					switch (speaker[i])
-					{
-						case 1:
-							pos = new Vector3(Screen.width/4, Screen.height/4, 0.0f);
-							break;
-						case 2:
-							pos = new Vector3(3*(Screen.width/4), Screen.height/4, 0.0f);
-							break;
-						case 3:
-							cop_speechBubble.SetActive(true);
-							cop_speechBubble.GetComponent<Animator>().enabled = true;
-							cop_speechBubble.GetComponent<SpeechBubble>().setText(sentence[i]);
-							pos = new Vector3(Screen.width/2, 3*(Screen.height/4), 0.0f);
-							break;
-					}
-					//GameObject bub = (GameObject)Instantiate(speechBubble, pos,Quaternion.Euler(0, 0, 0));
-					//bub.transform.SetParent(canvas);
-					//bub.GetComponent<SpeechBubble>().setStoredText(sentence[i]);
-				}
-			}
-			if (currentBubble == timers.Length)
-			{
-				optionsTimer -= Time.deltaTime;
-				if (optionsTimer <= 0.0f)
-				{
-					if (Mathf.FloorToInt(Random.Range(0,2)) == 1)
-					{
-						leftAnswers = answerGenerator.getGameTypes();
-						rightAnswers = answerGenerator.getGameVariables();
-						gameTypeLeft = true;
-					} else
-					{
-						leftAnswers = answerGenerator.getGameVariables();
-						rightAnswers = answerGenerator.getGameTypes();
-						gameTypeLeft = false;
-					}
-					for (int j = 0; j < 3; j++)
-					{
-						Vector3 pos = Vector3.zero;
-						switch (j)
-						{
-						case 0:
-							pos = new Vector3(Screen.width/8, 2*(Screen.height/3), 0.0f);
-							break;
-						case 1:
-							pos = new Vector3(Screen.width/4, 2*(Screen.height/3), 0.0f);
-							break;
-						case 2:
-							pos = new Vector3(3*(Screen.width/8), 2*(Screen.height/3), 0.0f);
-							break;
-						}
-						GameObject obj = (GameObject)Instantiate(thoughtBubble, pos,Quaternion.Euler(0, 0, 0));
-						obj.transform.SetParent(canvas);
-						obj.GetComponent<ThoughtBubble>().setStoredText(leftAnswers[j]);
-						obj.tag = "LeftChoice";
-						leftBubbles[j] = obj;
-					}
-					for (int j = 0; j < 3; j++)
-					{
-						Vector3 pos = Vector3.zero;
-						switch (j)
-						{
-						case 0:
-							pos = new Vector3(5*(Screen.width/8), 2*(Screen.height/3), 0.0f);
-							break;
-						case 1:
-							pos = new Vector3(6*(Screen.width/8), 2*(Screen.height/3), 0.0f);
-							break;
-						case 2:
-							pos = new Vector3(7*(Screen.width/8), 2*(Screen.height/3), 0.0f);
-							break;
-						}
-						GameObject obj = (GameObject)Instantiate(thoughtBubble, pos,Quaternion.Euler(0, 0, 0));
-						obj.transform.SetParent(canvas);
-						obj.GetComponent<ThoughtBubble>().setStoredText(rightAnswers[j]);
-						obj.tag = "RightChoice";
-						rightBubbles[j] = obj;
-					}
-					answersAvailable = true;
 				}
 			}
 		}

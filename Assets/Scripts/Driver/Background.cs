@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Background : MonoBehaviour {
 
-	public const float SPEED = 60.0f;
+	public const float SPEED = 15.0f;
 
 	// Use this for initialization
 	void Start () {

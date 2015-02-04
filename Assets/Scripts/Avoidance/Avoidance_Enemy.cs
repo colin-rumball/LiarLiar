@@ -10,7 +10,10 @@ public class Avoidance_Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		target = GameObject.Find("Player1");
+		if (Random.Range(0, 2) == 1)
+			target = GameObject.Find("Player1");
+		else
+			target = GameObject.Find("Player2");
 	}
 	
 	// Update is called once per frame

@@ -1,48 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Brawler : MonoBehaviour {
-	
+public class Avoidance : MonoBehaviour 
+{
 	public GameObject enemy;
 	public Sprite[] sprites;
+	public Transform[] spawnLocations;
 
 	private int gameVariable;
 	private Sprite selectedSprite;
-	private float spawnTimer = 0.8f;
+	private float spawnTimer = 1.5f;
 	private float gameTimer = 5.0f;
 
-	// Use this for initialization
 	void Start () {
 		gameVariable = PlayerPrefs.GetInt("GameVariable");
+		Debug.Log(gameVariable);
 		switch (gameVariable)
 		{
-		case 0:
+			case 0:
 			selectedSprite = sprites[0];
-			break;
-		case 1: 
+				break;
+			case 1: 
 			selectedSprite = sprites[1];
-			break;
-		case 2:
+				break;
+			case 2:
 			selectedSprite = sprites[2];
-			break;
-		case 3: 
+				break;
+			case 3: 
 			selectedSprite = sprites[3];
-			break;
-		case 4: 
+				break;
+			case 4: 
 			selectedSprite = sprites[4];
-			break;
-		case 5:
+				break;
+			case 5:
 			selectedSprite = sprites[5];
-			break;
-		case 6:
+				break;
+			case 6:
 			selectedSprite = sprites[6];
-			break;
-		case 7:
+				break;
+			case 7:
 			selectedSprite = sprites[7];
-			break;
-		case 8:
+				break;
+			case 8:
 			selectedSprite = sprites[8];
-			break;
+				break;
 		default:
 			selectedSprite = sprites[1];
 			break;
@@ -52,24 +53,14 @@ public class Brawler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		spawnTimer -= Time.deltaTime;
 		if (spawnTimer <= 0.0f)
 		{
-			Vector3 pos = Vector3.zero;
-			Quaternion rot = Quaternion.Euler(0,0,0);
-			if (Random.Range(0, 2) == 1)
-			{
-				pos = new Vector3(12.0f, -1.45f, -1.0f);
-				rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-			} else
-			{
-				pos = new Vector3(-12, -1.45f, -1.0f);
-				rot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-			}
-			GameObject obj = (GameObject)Instantiate(enemy, pos, rot);
+			Vector3 pos = spawnLocations[Random.Range(0, spawnLocations.Length)].position;
+			GameObject obj = (GameObject) Instantiate(enemy, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
 			obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
-			spawnTimer = Random.Range(4, 12)/10.0f;
-		}
+			spawnTimer = 1.5f;
+		} else
+			spawnTimer -= Time.deltaTime;
 
 		if (gameTimer <= 0.0f)
 		{

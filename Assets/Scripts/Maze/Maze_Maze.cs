@@ -132,7 +132,7 @@ public class Maze_Maze : MonoBehaviour
 					{
 						getCell(i, j).getTopWall().bringDown();
 					}
-					go = (GameObject) Instantiate(wallPrefab, new Vector3((i*cellSize)-(((float)cellSize)/2), 0.0f, -j*cellSize), Quaternion.Euler(-90, 0, 0));
+					go = (GameObject) Instantiate(wallPrefab, new Vector3((i*cellSize)-(((float)cellSize)/2), -j*cellSize, 0.0f), Quaternion.Euler(0, 0, 0));
 					go.transform.parent = gameObject.transform;
 					if (go != null && (i == 1 || i == nbCols+1))
 					{
@@ -148,7 +148,7 @@ public class Maze_Maze : MonoBehaviour
 					{
 						getCell(i, j).getLeftWall().bringDown();
 					}
-					go = (GameObject) Instantiate(wallPrefab, new Vector3(i*cellSize, 0.0f, -(j*cellSize)+(((float)cellSize)/2)), Quaternion.Euler(-90, 0, 90)); //top
+					go = (GameObject) Instantiate(wallPrefab, new Vector3(i*cellSize, -(j*cellSize)+(((float)cellSize)/2), 0.0f), Quaternion.Euler(0, 0, 90)); //top
 					go.transform.parent = gameObject.transform;
 					if (go != null && (j == 1 || j == nbRows+1))
 					{
@@ -160,7 +160,7 @@ public class Maze_Maze : MonoBehaviour
 					
 					break;
 				case "3":
-					go = (GameObject) Instantiate(wallPrefab, new Vector3((i*cellSize)-(((float)cellSize)/2), 0.0f, -j*cellSize), Quaternion.Euler(-90, 0, 0)); //left
+					go = (GameObject) Instantiate(wallPrefab, new Vector3((i*cellSize)-(((float)cellSize)/2), -j*cellSize, 0.0f), Quaternion.Euler(0, 0, 0)); //left
 					go.transform.parent = gameObject.transform;
 					if (go != null && (i == 1 || i == nbCols+1))
 					{
@@ -169,7 +169,7 @@ public class Maze_Maze : MonoBehaviour
 					//go.GetComponent<WallComponent>().setMazePosition(i, j);
 					//go.GetComponent<WallComponent>().setWallType(WallComponent.WallType.left);
 					
-					go = (GameObject) Instantiate(wallPrefab, new Vector3(i*cellSize, 0.0f, -(j*cellSize)+(((float)cellSize)/2)), Quaternion.Euler(-90, 0, 90));
+					go = (GameObject) Instantiate(wallPrefab, new Vector3(i*cellSize, -(j*cellSize)+(((float)cellSize)/2), 0.0f), Quaternion.Euler(0, 0, 90));
 					go.transform.parent = gameObject.transform;
 					if (go != null && (j == 1 || j == nbRows+1))
 					{
