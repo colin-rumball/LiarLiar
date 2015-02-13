@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Driver_Obstacle : MonoBehaviour 
 {
-	public const float SPEED = 2.0f;
+	public const float SPEED = 15.0f;
 
 	// Use this for initialization
 	void Start () {

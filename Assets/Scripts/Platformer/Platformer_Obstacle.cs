@@ -1,0 +1,31 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Platformer_Obstacle : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.tag == "MainCamera")
+		{
+			BoxCollider2D[] boxes = this.GetComponents<BoxCollider2D>();
+			foreach(BoxCollider2D box in boxes)
+			{
+				if (!box.isTrigger)
+				{
+					box.GetComponent<Rigidbody2D>().gravityScale = 0;
+					Destroy(box);
+				}
+			}
+		}
+	}
+}

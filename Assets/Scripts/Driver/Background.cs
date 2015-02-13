@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Background : MonoBehaviour {
 
-	public const float SPEED = 15.0f;
+	public float SPEED = 15.0f;
+	private bool stopping = false;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +15,17 @@ public class Background : MonoBehaviour {
 	void Update () 
 	{
 		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED * Time.deltaTime, this.transform.position.z);
+
+		if (stopping)
+			SPEED -= SPEED * 0.1f;
+
+		if (SPEED < 0.0f)
+			SPEED = 0.0f;
+	}
+
+	public void startStopping()
+	{
+		stopping = true;
 	}
 	
 	void OnTriggerEnter(Collider c)

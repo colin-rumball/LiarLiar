@@ -13,7 +13,7 @@ public class Brawler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameVariable = PlayerPrefs.GetInt("GameVariable");
+		gameVariable = Global.GameVariable;
 		switch (gameVariable)
 		{
 		case 0:
@@ -68,6 +68,12 @@ public class Brawler : MonoBehaviour {
 			}
 			GameObject obj = (GameObject)Instantiate(enemy, pos, rot);
 			obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+
+			if (gameVariable == 7)
+			{
+				obj.GetComponent<Brawler_Enemy>().setToRoll();
+			}
+
 			spawnTimer = Random.Range(4, 12)/10.0f;
 		}
 

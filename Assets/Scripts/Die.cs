@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Die : MonoBehaviour {
 
+	void Start()
+	{
+
+	}
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.tag == "Player" ||other.tag == "Player2")
 	{
-			PlayerPrefs.SetInt("Result", 0);
+			Global.GameResult = false;
 			Application.LoadLevel("Interrogation");
 	}
 	}

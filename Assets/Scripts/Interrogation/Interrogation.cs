@@ -33,16 +33,13 @@ public class Interrogation : MonoBehaviour
 	void Start () 
 	{
 		fillAnswerBubbles();
-		switch (PlayerPrefs.GetInt("Result"))
+		if (Global.GameResult)
 		{
-		case 0:
-			break;
-		case 1:
-			break;
-		default:
-			break;
+
+		} else
+		{
+			Global.GameStrikes++;
 		}
-		Debug.Log(PlayerPrefs.GetInt("Result"));
 	}
 
 	void fillAnswerBubbles()
@@ -70,8 +67,8 @@ public class Interrogation : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.T))
 		{
-			PlayerPrefs.SetInt("GameVariable", 2);
-			Application.LoadLevel("Driver");
+			Global.GameVariable = 7;
+			Application.LoadLevel("Brawler");
 		}
 
 		if (answersAvailable)
@@ -133,11 +130,11 @@ public class Interrogation : MonoBehaviour
 			{
 				if (gameTypeLeft)
 				{
-					PlayerPrefs.SetInt("GameVariable", answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]));
+					Global.GameVariable = answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]);
 					Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
 				} else
 				{
-					PlayerPrefs.SetInt("GameVariable", answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]));
+					Global.GameVariable = answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]);
 					Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
 				}
 			}

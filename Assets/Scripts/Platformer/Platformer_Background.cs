@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Platformer_Background : MonoBehaviour {
-	public GameObject plain, box, alley, window, background, spawner;
+	public GameObject plain, box, alley, window, spawner;
 	private GameObject obs;
 	private float spawnTimer = 0.0f;
 	private bool nextIsPlain = false;
@@ -36,7 +36,7 @@ public class Platformer_Background : MonoBehaviour {
 				case 2:
 				case 4:
 					if (Mathf.FloorToInt(Random.Range(0, 4)) == 3)
-						Instantiate(obs, new Vector3(spawner.transform.position.x, -0.625f, -1), Quaternion.Euler(0,0,0));
+						Instantiate(obs, new Vector3(spawner.transform.position.x, 0.0f, -1), Quaternion.Euler(0,0,0));
 					Instantiate(plain, spawner.transform.position, Quaternion.Euler(0,0,0));
 					nextIsPlain = false;
 					break;
@@ -44,7 +44,7 @@ public class Platformer_Background : MonoBehaviour {
 				case 3:
 				case 5:
 					if (Mathf.FloorToInt(Random.Range(0, 4)) == 3)
-						Instantiate(obs, new Vector3(spawner.transform.position.x, -0.625f, -1), Quaternion.Euler(0,0,0));
+						Instantiate(obs, new Vector3(spawner.transform.position.x, 0.0f, -1), Quaternion.Euler(0,0,0));
 					Instantiate(window, spawner.transform.position, Quaternion.Euler(0,0,0));
 					nextIsPlain = false;
 					break;

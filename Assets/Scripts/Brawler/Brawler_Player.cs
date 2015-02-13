@@ -44,14 +44,14 @@ public class Brawler_Player : MonoBehaviour {
 		punched = true;
 		Debug.DrawRay(transform.position, transform.right, Color.black);
 		RaycastHit hitInfo = new RaycastHit();
-		bool hit = Physics.Raycast(transform.position, transform.right, out hitInfo, 1);
+		bool hit = Physics.Raycast(transform.position, transform.right, out hitInfo, 2);
 		if (hit) 
 		{
-			Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+			//Debug.Log("Hit " + hitInfo.transform.gameObject.name);
 			if (hitInfo.transform.gameObject.tag == "Brawler-Punchable")
 			{
 				Destroy(hitInfo.transform.gameObject);
-				Debug.Log ("It's working!");
+				//Debug.Log ("It's working!");
 			} else {
 				//Debug.Log ("nopz");
 			}

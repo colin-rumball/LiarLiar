@@ -6,6 +6,8 @@ public class MainMenu : MonoBehaviour
 {
 	public void StartGame()
 	{
+		Global.GameStrikes = 0;
+		Global.GameResult = true;
 		Application.LoadLevel("Introduction");
 	}
 

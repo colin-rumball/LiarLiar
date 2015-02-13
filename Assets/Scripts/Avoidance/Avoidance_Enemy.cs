@@ -20,6 +20,11 @@ public class Avoidance_Enemy : MonoBehaviour {
 	void Update () 
 	{
 		float step = SPEED * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+		Vector3 moveTo = Vector3.MoveTowards(transform.position, target.transform.position, step);
+		if (moveTo.x > this.transform.position.x)
+			this.transform.rotation = Quaternion.Euler(0,0,0);
+		else
+			this.transform.rotation = Quaternion.Euler(0,-180.0f,0);
+		transform.position = moveTo;
 	}
 }

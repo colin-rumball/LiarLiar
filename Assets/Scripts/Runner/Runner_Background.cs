@@ -5,11 +5,12 @@ public class Runner_Background : MonoBehaviour {
 
 	public GameObject road, wall1, wall2, wall3, door, door2, window1, alley, spawner;
 	private float spawnTimer = 0.0f;
-	private bool nextIsWall = false;
+	private bool nextIsWall = false, spawnedObs;
+	private GameObject obs;
 
 	// Use this for initialization
 	void Start () {
-	
+		spawnedObs = false;
 	}
 	
 	// Update is called once per frame
@@ -64,7 +65,26 @@ public class Runner_Background : MonoBehaviour {
 			Vector3 pos = new Vector3(spawner.transform.position.x, spawner.transform.position.y-5.34f, spawner.transform.position.z);
 			Instantiate(road, pos, Quaternion.Euler(0,0,0));
 			spawnTimer = 0.1f;
+
+
+			rand = Random.Range(0, 4);
+			if (obs != null && rand == 1 && !spawnedObs)
+			{
+				pos = new Vector3(spawner.transform.position.x, -1.44f, 0.0f);
+				Instantiate(obs, pos, Quaternion.Euler(0,-180,0));
+				spawnedObs = true;
+			} else
+			{
+				if (spawnedObs)
+					spawnedObs = false;
+			}
+
 		} else
 			spawnTimer -= Time.deltaTime;	
+	}
+
+	public void setObs(GameObject _obj)
+	{
+		obs = _obj;
 	}
 }

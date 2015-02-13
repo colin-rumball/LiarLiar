@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Avoidance : MonoBehaviour 
 {
-	public GameObject enemy;
+	public GameObject enemy, tombstone;
 	public Sprite[] sprites;
 	public Transform[] spawnLocations;
 
@@ -13,7 +13,7 @@ public class Avoidance : MonoBehaviour
 	private float gameTimer = 5.0f;
 
 	void Start () {
-		gameVariable = PlayerPrefs.GetInt("GameVariable");
+		gameVariable = Global.GameVariable;
 		Debug.Log(gameVariable);
 		switch (gameVariable)
 		{
@@ -56,15 +56,18 @@ public class Avoidance : MonoBehaviour
 		if (spawnTimer <= 0.0f)
 		{
 			Vector3 pos = spawnLocations[Random.Range(0, spawnLocations.Length)].position;
+			if (gameVariable == 3 || gameVariable == 5)
+				Instantiate(tombstone, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
 			GameObject obj = (GameObject) Instantiate(enemy, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
 			obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+
 			spawnTimer = 1.5f;
 		} else
 			spawnTimer -= Time.deltaTime;
 
 		if (gameTimer <= 0.0f)
 		{
-			PlayerPrefs.SetInt("Result", 1);
+			Global.GameResult = true;
 			Application.LoadLevel("Interrogation");
 		} else
 			gameTimer -= Time.deltaTime;
