@@ -14,13 +14,16 @@ public class Background : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED * Time.deltaTime, this.transform.position.z);
+		if (Global.GamePlaying)
+		{
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED * Time.deltaTime, this.transform.position.z);
 
-		if (stopping)
-			SPEED -= SPEED * 0.1f;
+			if (stopping)
+				SPEED -= SPEED * 0.1f;
 
-		if (SPEED < 0.0f)
-			SPEED = 0.0f;
+			if (SPEED < 0.0f)
+				SPEED = 0.0f;
+		}
 	}
 
 	public void startStopping()

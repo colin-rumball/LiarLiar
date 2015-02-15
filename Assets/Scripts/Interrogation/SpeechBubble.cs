@@ -4,18 +4,26 @@ using System.Collections;
 
 public class SpeechBubble : MonoBehaviour 
 {
-	string storedText;
-	Text text;
-	float timer = 0.01f;
-	float rate = 1.2f;
+	//string storedText;
+	//Text text;
+	Animator anim;
+	Image image;
+	Text textObj;
+	//float rate = 1.2f;
 	// Use this for initialization
 	void Start () {
-
+		anim = this.GetComponent<Animator>();
+		image = this.GetComponent<Image>();
+		textObj = this.GetComponentInChildren<Text>();
+		if (anim != null)
+			anim.enabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		image.enabled = true;
+		textObj.enabled = true;
 		/*if (this.transform.localScale.x >= 1.0f)
 		{
 			timer -= Time.deltaTime;
@@ -35,11 +43,16 @@ public class SpeechBubble : MonoBehaviour
 			}
 		}*/
 	}
+
+	public void reset()
+	{
+		anim.playbackTime = 0;
+	}
 	
-	public void setText(string _text)
+	/*public void setText(string _text)
 	{
 		text = this.GetComponentInChildren<Text>();
 		text.text = _text;
-	}
+	}*/
 
 }

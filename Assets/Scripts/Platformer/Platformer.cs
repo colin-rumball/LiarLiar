@@ -9,7 +9,7 @@ public class Platformer : MonoBehaviour {
 	
 	private int gameVariable;
 	private float spawnTimer = 0.8f;
-	private float gameTimer = 5.0f;
+	private float gameTimer = 12.0f;
 	private GameObject selectedEnemy;
 
 
@@ -61,27 +61,31 @@ public class Platformer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		/*if (gameTimer > 0.0f)
+		if (Global.GamePlaying)
 		{
-			if (spawnTimer <= 0.0f)
+			/*if (gameTimer > 0.0f)
 			{
-				Quaternion rot = Quaternion.Euler(0,0,0);
-				if (Random.Range(0, 2) == 1)
-					rot = Quaternion.Euler(0,-180.0f,0);
-				
-				//GameObject obj = (GameObject)Instantiate(enemy, nextSpawnLocation, rot);
-				//setUpEnemy(obj);
-				spawnTimer = Random.Range(8, 14)/10.0f;
-			} else
-				spawnTimer -= Time.deltaTime;
-		}*/
+				if (spawnTimer <= 0.0f)
+				{
+					Quaternion rot = Quaternion.Euler(0,0,0);
+					if (Random.Range(0, 2) == 1)
+						rot = Quaternion.Euler(0,-180.0f,0);
+					
+					//GameObject obj = (GameObject)Instantiate(enemy, nextSpawnLocation, rot);
+					//setUpEnemy(obj);
+					spawnTimer = Random.Range(8, 14)/10.0f;
+				} else
+					spawnTimer -= Time.deltaTime;
+			}*/
 
-		if (gameTimer <= 0.0f || Global.GameCounter >= 3)
-		{
-			Global.GameResult = true;
-			Application.LoadLevel("Interrogation");
-		} else
-			gameTimer -= Time.deltaTime;	
+			if (gameTimer <= 0.0f || Global.GameCounter >= 3)
+			{
+				Global.GameResult = true;
+				Global.GamePlaying = false;
+				//Application.LoadLevel("Interrogation");
+			} else
+				gameTimer -= Time.deltaTime;	
+		}
 	}
 
 	/*void setUpEnemy(GameObject obj)

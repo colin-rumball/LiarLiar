@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Runner_Chaser : MonoBehaviour 
 {
-	public const float SPEED = 6.0f;
+	public const float SPEED = 12.0f;
 
 	private float timer, pursuitTimer;
 	private bool pursuing;
@@ -22,24 +22,27 @@ public class Runner_Chaser : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (timer <= 0.0f)
+		if (Global.GamePlaying)
 		{
-			if (pursuing)
+			if (timer <= 0.0f)
 			{
-				if (direction == FORWARD)
+				if (pursuing)
 				{
-					this.transform.position = Vector3.MoveTowards(transform.position, transform.position+new Vector3(5,0,0), SPEED * Time.deltaTime);
-				} else 
+					if (direction == FORWARD)
+					{
+						this.transform.position = Vector3.MoveTowards(transform.position, transform.position+new Vector3(5,0,0), SPEED * Time.deltaTime);
+					} else 
+					{
+						this.transform.position = Vector3.MoveTowards(transform.position, transform.position+new Vector3(-5,0,0), (SPEED*2.0f) * Time.deltaTime);
+					}
+				} else
 				{
-					this.transform.position = Vector3.MoveTowards(transform.position, transform.position+new Vector3(-5,0,0), SPEED * Time.deltaTime);
+					pursuing = true;
+					direction = FORWARD;
 				}
 			} else
-			{
-				pursuing = true;
-				direction = FORWARD;
-			}
-		} else
-			timer -= Time.deltaTime;
+				timer -= Time.deltaTime;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -55,7 +58,7 @@ public class Runner_Chaser : MonoBehaviour
 			if (pursuing && direction == BACKWARD)
 			{
 				pursuing = false;
-				timer = 8.8f;
+				timer = 3.4f;
 			}
 		}
 	}

@@ -17,59 +17,62 @@ public class Avoidance_Player1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (tag == "Player") 
+		if (Global.GamePlaying)
 		{
-			if (Input.GetKey(KeyCode.A))
+			if (tag == "Player") 
 			{
-				this.transform.position = new Vector3(this.transform.position.x- SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-				if (facingRight)
-					Flip();
-			} else if (Input.GetKey(KeyCode.D))
+				if (Input.GetKey(KeyCode.A))
+				{
+					this.transform.position = new Vector3(this.transform.position.x- SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+					if (facingRight)
+						Flip();
+				} else if (Input.GetKey(KeyCode.D))
+				{
+					this.transform.position = new Vector3(this.transform.position.x+ SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+					if (!facingRight)
+						Flip();
+				} else
+				{
+					anim.SetFloat("Speed", 0.0f);
+				}
+				if (Input.GetKey(KeyCode.S))
+				{
+					this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED*Time.deltaTime, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+				} else if (Input.GetKey(KeyCode.W))
+				{
+					this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + SPEED*Time.deltaTime, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+				}
+			} else if (tag == "Player2") 
 			{
-				this.transform.position = new Vector3(this.transform.position.x+ SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-				if (!facingRight)
-					Flip();
-			} else
-			{
-				anim.SetFloat("Speed", 0.0f);
-			}
-			if (Input.GetKey(KeyCode.S))
-			{
-				this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED*Time.deltaTime, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-			} else if (Input.GetKey(KeyCode.W))
-			{
-				this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + SPEED*Time.deltaTime, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-			}
-		} else if (tag == "Player2") 
-		{
-			if (Input.GetKey(KeyCode.LeftArrow))
-			{
-				this.transform.position = new Vector3(this.transform.position.x- SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-				if (facingRight)
-					Flip();
-			} else if (Input.GetKey(KeyCode.RightArrow))
-			{
-				this.transform.position = new Vector3(this.transform.position.x+ SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-				if (!facingRight)
-					Flip();
-			} else
-			{
-				anim.SetFloat("Speed", 0.0f);
-			}
-			if (Input.GetKey(KeyCode.DownArrow))
-			{
-				this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED*Time.deltaTime, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
-			} else if (Input.GetKey(KeyCode.UpArrow))
-			{
-				this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + SPEED*Time.deltaTime, this.transform.position.z);
-				anim.SetFloat("Speed", SPEED);
+				if (Input.GetKey(KeyCode.LeftArrow))
+				{
+					this.transform.position = new Vector3(this.transform.position.x- SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+					if (facingRight)
+						Flip();
+				} else if (Input.GetKey(KeyCode.RightArrow))
+				{
+					this.transform.position = new Vector3(this.transform.position.x+ SPEED*Time.deltaTime, this.transform.position.y, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+					if (!facingRight)
+						Flip();
+				} else
+				{
+					anim.SetFloat("Speed", 0.0f);
+				}
+				if (Input.GetKey(KeyCode.DownArrow))
+				{
+					this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED*Time.deltaTime, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+				} else if (Input.GetKey(KeyCode.UpArrow))
+				{
+					this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + SPEED*Time.deltaTime, this.transform.position.z);
+					anim.SetFloat("Speed", SPEED);
+				}
 			}
 		}
 	}

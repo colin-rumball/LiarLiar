@@ -52,36 +52,40 @@ public class Brawler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		spawnTimer -= Time.deltaTime;
-		if (spawnTimer <= 0.0f)
+		if (Global.GamePlaying)
 		{
-			Vector3 pos = Vector3.zero;
-			Quaternion rot = Quaternion.Euler(0,0,0);
-			if (Random.Range(0, 2) == 1)
+			spawnTimer -= Time.deltaTime;
+			if (spawnTimer <= 0.0f)
 			{
-				pos = new Vector3(12.0f, -1.45f, -1.0f);
-				rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+				Vector3 pos = Vector3.zero;
+				Quaternion rot = Quaternion.Euler(0,0,0);
+				if (Random.Range(0, 2) == 1)
+				{
+					pos = new Vector3(12.0f, -1.45f, -1.0f);
+					rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+				} else
+				{
+					pos = new Vector3(-12, -1.45f, -1.0f);
+					rot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+				}
+				GameObject obj = (GameObject)Instantiate(enemy, pos, rot);
+				obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+
+				if (gameVariable == 7)
+				{
+					obj.GetComponent<Brawler_Enemy>().setToRoll();
+				}
+
+				spawnTimer = Random.Range(4, 12)/10.0f;
+			}
+
+			if (gameTimer <= 0.0f)
+			{
+				Global.GameResult = true;
+				Global.GamePlaying = false;
+				//Application.LoadLevel("Interrogation");
 			} else
-			{
-				pos = new Vector3(-12, -1.45f, -1.0f);
-				rot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-			}
-			GameObject obj = (GameObject)Instantiate(enemy, pos, rot);
-			obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
-
-			if (gameVariable == 7)
-			{
-				obj.GetComponent<Brawler_Enemy>().setToRoll();
-			}
-
-			spawnTimer = Random.Range(4, 12)/10.0f;
+				gameTimer -= Time.deltaTime;
 		}
-
-		if (gameTimer <= 0.0f)
-		{
-			PlayerPrefs.SetInt("Result", 1);
-			Application.LoadLevel("Interrogation");
-		} else
-			gameTimer -= Time.deltaTime;
 	}
 }

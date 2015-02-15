@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Platformer_Obstacle : MonoBehaviour {
 
+	private bool boxRemoved = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +17,7 @@ public class Platformer_Obstacle : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.tag == "MainCamera")
+		if(!boxRemoved)
 		{
 			BoxCollider2D[] boxes = this.GetComponents<BoxCollider2D>();
 			foreach(BoxCollider2D box in boxes)
@@ -23,7 +25,9 @@ public class Platformer_Obstacle : MonoBehaviour {
 				if (!box.isTrigger)
 				{
 					box.GetComponent<Rigidbody2D>().gravityScale = 0;
+					box.GetComponent<Rigidbody2D>().isKinematic = true;
 					Destroy(box);
+					boxRemoved = true;
 				}
 			}
 		}

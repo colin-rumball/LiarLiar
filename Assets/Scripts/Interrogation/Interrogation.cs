@@ -4,22 +4,17 @@ using System.Collections;
 
 public class Interrogation : MonoBehaviour 
 {
-	//public GameObject cop_speechBubble;
-	//public GameObject speechBubble;
-	//public GameObject thoughtBubble;
-	//public GameObject background;
-	//public Transform canvas;
-
+	public GameObject copBubble, playersBubble, allAnswerBubbles, fader, canvas;
+	public Image background;
+	public Image[] strikes;
+	public Sprite bg2;
+	public Text gamesWon;
 	public GameObject[] leftBubbles = new GameObject[3];
 	public GameObject[] rightBubbles = new GameObject[3];
 	
 	public TheGenerator answerGenerator;
 
 	public bool answersAvailable = false;
-
-	private string[] sentence = {"What do you think you're doing?",
-		"What are we going to do now?",
-		"Explain Yourself!"};
 	
 	private string[] leftAnswers = new string[3];
 	private string[] rightAnswers = new string[3];
@@ -27,18 +22,48 @@ public class Interrogation : MonoBehaviour
 	private int leftSelection = -1;
 	private int rightSelection = -1;
 	
-	private bool gameTypeLeft = false;
+	private bool gameTypeOnLeft = false;
+	private bool typeAndVarSet = false;
+
+	private float endingTimer = 2.0f;
+	private float beginningTimer = 2.0f;
+	private float answerTimer = 1.5f;
+	private float gameOverTimer = 3.0f;
+
 	
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 		fillAnswerBubbles();
-		if (Global.GameResult)
+		if (Global.GamePlayed)
 		{
+			if (Global.GameResult)
+			{
+				copBubble.GetComponentInChildren<Text>().text = "I guess that makes sense... Then what happened?";
+				Global.GamesWon++;
+			} else
+			{
+				Global.GameStrikes++;
+				if (Global.GameStrikes >= 3)
+				{
+					copBubble.GetComponentInChildren<Text>().text = "None of this is making any sense. You're coming with me!";
+					background.sprite = bg2;
+					Global.GameOver = true;
+				} else
+				{
+					copBubble.GetComponentInChildren<Text>().text = "I don't believe you! Tell me the truth!";
+				}
+			}
 
+			for (int i = 0; i < Global.GameStrikes && i < strikes.Length; i++)
+			{
+				strikes[i].color = new Color32(255, 255, 255, 255); 
+			}
+			gamesWon.text = Global.GamesWon.ToString();
 		} else
 		{
-			Global.GameStrikes++;
+			fader.SetActive(false);
+			Global.GamePlayed = true;
 		}
 	}
 
@@ -48,18 +73,19 @@ public class Interrogation : MonoBehaviour
 		{
 			leftAnswers = answerGenerator.getGameTypes();
 			rightAnswers = answerGenerator.getGameVariables();
-			gameTypeLeft = true;
+			gameTypeOnLeft = true;
 		} else
 		{
 			leftAnswers = answerGenerator.getGameVariables();
 			rightAnswers = answerGenerator.getGameTypes();
-			gameTypeLeft = false;
+			gameTypeOnLeft = false;
 		}
 		for (int i = 0; i < 3; i++)
 		{
 			leftBubbles[i].GetComponentInChildren<Text>().text = leftAnswers[i];
 			rightBubbles[i].GetComponentInChildren<Text>().text = rightAnswers[i];
 		}
+		allAnswerBubbles.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -67,11 +93,12 @@ public class Interrogation : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.T))
 		{
-			Global.GameVariable = 7;
-			Application.LoadLevel("Brawler");
+			Global.GamePlaying = true;
+			Global.GameVariable = 6;
+			Application.LoadLevel("Driver");
 		}
 
-		if (answersAvailable)
+		if (answersAvailable && answerTimer <= 0.0f)
 		{
 			if (leftSelection < 0)
 			{
@@ -128,16 +155,61 @@ public class Interrogation : MonoBehaviour
 			
 			if (leftSelection >= 0 && rightSelection >= 0)
 			{
-				if (gameTypeLeft)
+				if (endingTimer <= 0.0f)
 				{
-					Global.GameVariable = answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]);
-					Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
+					Global.GamePlaying = true;
+
+					Global.LevelInstruction = answerGenerator.getInstruction();
+					Application.LoadLevel("Instruction");
 				} else
+					endingTimer -= Time.deltaTime;
+
+				if (!typeAndVarSet)
 				{
-					Global.GameVariable = answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]);
-					Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
+					if (gameTypeOnLeft)
+					{
+						Global.GameVariable = answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]);
+						Global.LevelToLoad = answerGenerator.getTypeNumFromString(leftBubbles[leftSelection].GetComponentInChildren<Text>().text)+5;
+						//Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
+					} else
+					{
+						Global.GameVariable = answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]);
+						Global.LevelToLoad = answerGenerator.getTypeNumFromString(rightBubbles[rightSelection].GetComponentInChildren<Text>().text)+5;
+						//Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
+					}
+					playersBubble.SetActive(true);
+					playersBubble.GetComponentInChildren<Text>().text = answerGenerator.getSentence();
+					typeAndVarSet = true;
 				}
 			}
+		} else if (answersAvailable && answerTimer > 0.0f)
+		{
+			answerTimer -= Time.deltaTime;
+		} else
+		{
+			if (beginningTimer <= 0.0f)
+			{
+				if (Global.GameOver)
+				{
+					if (gameOverTimer == 3.0f)
+					{
+						canvas.GetComponent<Animator>().Play("Interrogation_FadeOut");
+						canvas.GetComponent<Animator>().playbackTime = 0.0f;
+						background.sprite = bg2;
+						gameOverTimer -= Time.deltaTime;
+					} else if (gameOverTimer <= 0.0f)
+					{
+						Application.LoadLevel("GameOver");
+					} else
+						gameOverTimer -= Time.deltaTime;
+				} else
+				{
+					allAnswerBubbles.SetActive(true);
+					answersAvailable = true;
+					background.sprite = bg2;
+				}
+			} else
+				beginningTimer -= Time.deltaTime;
 		}
 	}
 }

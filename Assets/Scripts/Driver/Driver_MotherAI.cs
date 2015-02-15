@@ -20,23 +20,27 @@ public class Driver_MotherAI : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (initialMovement)
+		if (Global.GamePlaying)
 		{
-			this.transform.position = Vector3.MoveTowards(this.transform.position, moveToLocation, SPEED * Time.deltaTime);
-			if (initialMovementTimer <= 0.0f)
+			if (initialMovement)
 			{
-				initialMovement = false;
-			} else
-				initialMovementTimer -= Time.deltaTime;
-		} else if (moving)
-		{
-			if (gameCompleteTimer <= 0.0f)
+				this.transform.position = Vector3.MoveTowards(this.transform.position, moveToLocation, SPEED * Time.deltaTime);
+				if (initialMovementTimer <= 0.0f)
+				{
+					initialMovement = false;
+				} else
+					initialMovementTimer -= Time.deltaTime;
+			} else if (moving)
 			{
-				Application.LoadLevel("Interrogation");
-			} else
-				gameCompleteTimer -= Time.deltaTime;
+				if (gameCompleteTimer <= 0.0f)
+				{
+					//Application.LoadLevel("Interrogation");
+					Global.GamePlaying = false;
+				} else
+					gameCompleteTimer -= Time.deltaTime;
 
-			this.transform.position = Vector3.MoveTowards(this.transform.position, playerPos, SPEED * Time.deltaTime);
+				this.transform.position = Vector3.MoveTowards(this.transform.position, playerPos, SPEED * Time.deltaTime);
+			}
 		}
 	}
 

@@ -15,27 +15,30 @@ public class Brawler_Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (punchTimer <= 0.0f)
+		if (Global.GamePlaying)
 		{
-			if (tag == "Player") 
+			if (punchTimer <= 0.0f)
 			{
-				if (Input.GetButton("Fire1"))
+				if (tag == "Player") 
 				{
-					punch();
+					if (Input.GetButton("Fire1"))
+					{
+						punch();
+					}
+				} else if (tag == "Player2") 
+				{
+					if (Input.GetButton("Fire2"))
+					{
+						punch();
+					}
 				}
-			} else if (tag == "Player2") 
+			} else if (punched && punchTimer <= 0.35f)
 			{
-				if (Input.GetButton("Fire2"))
-				{
-					punch();
-				}
-			}
-		} else if (punched && punchTimer <= 0.35f)
-		{
-			anim.SetBool("Punching", false);
-			punched = false;
-		} else
+				anim.SetBool("Punching", false);
+				punched = false;
+			} else
 			punchTimer -= Time.deltaTime;
+		}
 	}
 	
 	void punch()

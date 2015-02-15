@@ -10,11 +10,10 @@ public class Avoidance : MonoBehaviour
 	private int gameVariable;
 	private Sprite selectedSprite;
 	private float spawnTimer = 1.5f;
-	private float gameTimer = 5.0f;
+	private float gameTimer = 9.0f;
 
 	void Start () {
 		gameVariable = Global.GameVariable;
-		Debug.Log(gameVariable);
 		switch (gameVariable)
 		{
 			case 0:
@@ -53,23 +52,27 @@ public class Avoidance : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (spawnTimer <= 0.0f)
+		if (Global.GamePlaying)
 		{
-			Vector3 pos = spawnLocations[Random.Range(0, spawnLocations.Length)].position;
-			if (gameVariable == 3 || gameVariable == 5)
-				Instantiate(tombstone, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
-			GameObject obj = (GameObject) Instantiate(enemy, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
-			obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+			if (spawnTimer <= 0.0f)
+			{
+				Vector3 pos = spawnLocations[Random.Range(0, spawnLocations.Length)].position;
+				GameObject obj = (GameObject) Instantiate(enemy, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
+				if (gameVariable == 3 || gameVariable == 5)
+					Instantiate(tombstone, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
+				obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
 
-			spawnTimer = 1.5f;
-		} else
-			spawnTimer -= Time.deltaTime;
+				spawnTimer = 1.5f;
+			} else
+				spawnTimer -= Time.deltaTime;
 
-		if (gameTimer <= 0.0f)
-		{
-			Global.GameResult = true;
-			Application.LoadLevel("Interrogation");
-		} else
-			gameTimer -= Time.deltaTime;
+			if (gameTimer <= 0.0f)
+			{
+				Global.GameResult = true;
+				Global.GamePlaying = false;
+				//Application.LoadLevel("Interrogation");
+			} else
+				gameTimer -= Time.deltaTime;
+		}
 	}
 }

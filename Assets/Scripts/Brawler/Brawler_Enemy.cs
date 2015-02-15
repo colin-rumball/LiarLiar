@@ -14,20 +14,22 @@ public class Brawler_Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		float step = SPEED * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, new Vector3(0.0f, -1.45f, -1.0f), step);
-
-		if (roll)
+		if (Global.GamePlaying)
 		{
-			if (transform.position.x < 0.0f)
+			float step = SPEED * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, new Vector3(0.0f, -1.45f, -1.0f), step);
+
+			if (roll)
 			{
-				transform.Rotate(new Vector3(0, 0, 5.0f));
-			} else
-			{
-				transform.Rotate(new Vector3(0, 0, -5.0f));
+				if (transform.position.x < 0.0f)
+				{
+					transform.Rotate(new Vector3(0, 0, 5.0f));
+				} else
+				{
+					transform.Rotate(new Vector3(0, 0, -5.0f));
+				}
 			}
 		}
-
 	}
 
 	public void setToRoll()

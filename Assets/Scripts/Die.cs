@@ -10,11 +10,16 @@ public class Die : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.tag == "Player" ||other.tag == "Player2")
-	{
-			Global.GameResult = false;
-			Application.LoadLevel("Interrogation");
-	}
+		if (Global.GamePlaying)
+		{
+			if(other.tag == "Player" ||other.tag == "Player2")
+			{
+				Destroy(this);
+				Global.GameResult = false;
+				Global.GamePlaying = false;
+				//Application.LoadLevel("Interrogation");
+			}
+		}
 	}
 
 }

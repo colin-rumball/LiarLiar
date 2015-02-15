@@ -12,6 +12,9 @@ public class Platformer_CatAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position += new Vector3(SPEED * Time.deltaTime, 0, 0);
+		if (Global.GamePlaying)
+		{
+			this.transform.position += new Vector3(SPEED * Time.deltaTime, 0, 0);
+		}
 	}
 }

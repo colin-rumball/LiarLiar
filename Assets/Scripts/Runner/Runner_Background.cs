@@ -5,82 +5,85 @@ public class Runner_Background : MonoBehaviour {
 
 	public GameObject road, wall1, wall2, wall3, door, door2, window1, alley, spawner;
 	private float spawnTimer = 0.0f;
-	private bool nextIsWall = false, spawnedObs;
+	private bool nextIsWall = false;
+	private int spawnedObs = 0;
 	private GameObject obs;
 
 	// Use this for initialization
 	void Start () {
-		spawnedObs = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (spawnTimer <= 0.0f)
+		if (Global.GamePlaying)
 		{
-			spawner.transform.position = new Vector3(spawner.transform.position.x + 2.0f, 2.0f, spawner.transform.position.z);
-			int rand;
-			if (!nextIsWall)
-				rand = Random.Range(0, 14);
-			else
-				rand = Random.Range(0, 9);
-			switch (rand)
+			if (spawnTimer <= 0.0f)
 			{
-				case 0:
-				case 7:
-				case 4:
-					Instantiate(wall1, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = false;
-					break;
-				case 1:
-				case 8:
-				case 5:
-					Instantiate(wall2, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = false;
-					break;
-				case 2:
-				case 3:
-				case 6:
-					Instantiate(wall3, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = false;
-					break;
-				case 9:
-					Instantiate(door, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = true;
-					break;
-				case 10:
-					Instantiate(door2, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = true;
-					break;
-				case 11:
-					Instantiate(window1, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = true;
-					break;
-				case 12:
-				case 13:
-					Instantiate(alley, spawner.transform.position, Quaternion.Euler(0,0,0));
-					nextIsWall = true;
-					break;
-			}
-			Vector3 pos = new Vector3(spawner.transform.position.x, spawner.transform.position.y-5.34f, spawner.transform.position.z);
-			Instantiate(road, pos, Quaternion.Euler(0,0,0));
-			spawnTimer = 0.1f;
+				spawner.transform.position = new Vector3(spawner.transform.position.x + 2.0f, 2.0f, spawner.transform.position.z);
+				int rand;
+				if (!nextIsWall)
+					rand = Random.Range(0, 14);
+				else
+					rand = Random.Range(0, 9);
+				switch (rand)
+				{
+					case 0:
+					case 7:
+					case 4:
+						Instantiate(wall1, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = false;
+						break;
+					case 1:
+					case 8:
+					case 5:
+						Instantiate(wall2, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = false;
+						break;
+					case 2:
+					case 3:
+					case 6:
+						Instantiate(wall3, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = false;
+						break;
+					case 9:
+						Instantiate(door, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = true;
+						break;
+					case 10:
+						Instantiate(door2, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = true;
+						break;
+					case 11:
+						Instantiate(window1, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = true;
+						break;
+					case 12:
+					case 13:
+						Instantiate(alley, spawner.transform.position, Quaternion.Euler(0,0,0));
+						nextIsWall = true;
+						break;
+				}
+				Vector3 pos = new Vector3(spawner.transform.position.x, spawner.transform.position.y-5.34f, spawner.transform.position.z);
+				Instantiate(road, pos, Quaternion.Euler(0,0,0));
+				spawnTimer = 0.1f;
 
 
-			rand = Random.Range(0, 4);
-			if (obs != null && rand == 1 && !spawnedObs)
-			{
-				pos = new Vector3(spawner.transform.position.x, -1.44f, 0.0f);
-				Instantiate(obs, pos, Quaternion.Euler(0,-180,0));
-				spawnedObs = true;
+				rand = Random.Range(0, 4);
+				if (obs != null && rand == 1 && spawnedObs <= 0)
+				{
+					pos = new Vector3(spawner.transform.position.x, -1.44f, 0.0f);
+					Instantiate(obs, pos, Quaternion.Euler(0,-180,0));
+					spawnedObs = 4;
+				} else
+				{
+					if (spawnedObs > 0)
+						spawnedObs--;
+				}
+
 			} else
-			{
-				if (spawnedObs)
-					spawnedObs = false;
-			}
-
-		} else
-			spawnTimer -= Time.deltaTime;	
+				spawnTimer -= Time.deltaTime;	
+		}
 	}
 
 	public void setObs(GameObject _obj)

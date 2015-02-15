@@ -5,10 +5,14 @@ public class Die3D : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "Player" ||other.tag == "Player2")
+		if (Global.GamePlaying)
 		{
-			Global.GameResult = false;
-			Application.LoadLevel("Interrogation");
+			if(other.tag == "Player" ||other.tag == "Player2")
+			{
+				Global.GameResult = false;
+				Global.GamePlaying = false;
+				//Application.LoadLevel("Interrogation");
+			}
 		}
 	}
 }

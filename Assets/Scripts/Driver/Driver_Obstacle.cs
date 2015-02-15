@@ -13,12 +13,13 @@ public class Driver_Obstacle : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED * Time.deltaTime, this.transform.position.z);	
+		if (Global.GamePlaying)
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - SPEED * Time.deltaTime, this.transform.position.z);	
 	}
 
 	void OnTriggerEnter(Collider c)
 	{
 		if (c.gameObject.name == "Background End")
-			Destroy(this);
+			Destroy(this.gameObject);
 	}
 }

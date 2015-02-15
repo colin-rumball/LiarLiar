@@ -14,16 +14,19 @@ public class Driver_GhostAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (goingRight)
+		if (Global.GamePlaying)
 		{
-			this.transform.position = Vector3.MoveTowards(this.transform.position, 
-			                            new Vector3(this.transform.position.x+5.0f, this.transform.position.y, 
-			            				this.transform.position.z), SPEED * Time.deltaTime);
-		} else
-		{
-			this.transform.position = Vector3.MoveTowards(this.transform.position, 
-			                                              new Vector3(this.transform.position.x-5.0f, this.transform.position.y, 
-			            this.transform.position.z), SPEED * Time.deltaTime);
+			if (goingRight)
+			{
+				this.transform.position = Vector3.MoveTowards(this.transform.position, 
+				                            new Vector3(this.transform.position.x+5.0f, this.transform.position.y, 
+				            				this.transform.position.z), SPEED * Time.deltaTime);
+			} else
+			{
+				this.transform.position = Vector3.MoveTowards(this.transform.position, 
+				                                              new Vector3(this.transform.position.x-5.0f, this.transform.position.y, 
+				            this.transform.position.z), SPEED * Time.deltaTime);
+			}
 		}
 	}
 

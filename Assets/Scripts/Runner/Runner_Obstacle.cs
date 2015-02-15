@@ -15,16 +15,13 @@ public class Runner_Obstacle : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		//if(other.tag == "MainCamera")
+		BoxCollider2D[] boxes = this.GetComponents<BoxCollider2D>();
+		foreach(BoxCollider2D box in boxes)
 		{
-			BoxCollider2D[] boxes = this.GetComponents<BoxCollider2D>();
-			foreach(BoxCollider2D box in boxes)
+			if (!box.isTrigger)
 			{
-				if (!box.isTrigger)
-				{
-					box.GetComponent<Rigidbody2D>().isKinematic = true;
-					Destroy(box);
-				}
+				box.GetComponent<Rigidbody2D>().isKinematic = true;
+				Destroy(box);
 			}
 		}
 	}
