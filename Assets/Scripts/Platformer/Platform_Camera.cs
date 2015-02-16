@@ -15,7 +15,7 @@ public class Platform_Camera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Global.GamePlaying)
+		if (Global.GamePlaying  && (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode))
 		{
 			float step = SPEED * Time.deltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, 

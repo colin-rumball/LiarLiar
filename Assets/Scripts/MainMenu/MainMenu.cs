@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour
 		Global.GameResult = true;
 		Global.GamePlayed = false;
 		Global.GameOver = false;
+		PhotonNetwork.offlineMode = true;
+		//Application.LoadLevel("Connecting");
 		Application.LoadLevel("Introduction");
 	}
 

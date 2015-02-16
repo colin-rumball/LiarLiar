@@ -1,0 +1,131 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [aticfx32.dll 8.17.10.1230]
+    Renderer: AMD Radeon HD 7660D
+    Vendor:   ATI
+    VRAM:     750 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
+Begin MonoManager ReloadAssembly
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+- Completed reload, in  0.083 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 3.664923 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 296.
+Total: 1.009920 ms (FindLiveObjects: 0.011466 ms CreateObjectMapping: 0.013276 ms MarkObjects: 0.155395 ms  DeleteObjects: 0.012673 ms)
+
+Connect
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Best region found in PlayerPrefs. Connecting to: us
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+OnJoinedLobby
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+OnJoinedRoom
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.436013 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 340.
+Total: 1.128806 ms (FindLiveObjects: 0.015690 ms CreateObjectMapping: 0.015992 ms MarkObjects: 0.267340 ms  DeleteObjects: 0.013276 ms)
+
+UnloadTime: 0.551880 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 534.
+Total: 1.548826 ms (FindLiveObjects: 0.034398 ms CreateObjectMapping: 0.020820 ms MarkObjects: 0.376570 ms  DeleteObjects: 0.051899 ms)
+
+UnloadTime: 1.520161 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 298.
+Total: 1.538567 ms (FindLiveObjects: 0.015388 ms CreateObjectMapping: 0.019914 ms MarkObjects: 0.312300 ms  DeleteObjects: 0.182853 ms)
+
+UnloadTime: 0.457134 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 428.
+Total: 1.379551 ms (FindLiveObjects: 0.017500 ms CreateObjectMapping: 0.022328 ms MarkObjects: 0.269453 ms  DeleteObjects: 0.011466 ms)
+
+Exception: Error in Instantiation! The resource's PhotonView count is not the same as in incoming data.
+  at NetworkingPeer.DoInstantiate (ExitGames.Client.Photon.Hashtable evData, .PhotonPlayer photonPlayer, UnityEngine.GameObject resourceGameObject) [0x00000] in <filename unknown>:0 
+  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+UnloadTime: 0.527138 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 550.
+Total: 1.223552 ms (FindLiveObjects: 0.019009 ms CreateObjectMapping: 0.018406 ms MarkObjects: 0.341568 ms  DeleteObjects: 0.091125 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Interrogation.setPlayersBubble (System.String _str) [0x00000] in <filename unknown>:0 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at NetworkingPeer.ExecuteRPC (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
+  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+UnloadTime: 0.834610 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 320.
+Total: 1.185231 ms (FindLiveObjects: 0.010259 ms CreateObjectMapping: 0.015690 ms MarkObjects: 0.249236 ms  DeleteObjects: 0.130653 ms)
+
+UnloadTime: 0.444461 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 552.
+Total: 1.073587 ms (FindLiveObjects: 0.018104 ms CreateObjectMapping: 0.029872 ms MarkObjects: 0.303247 ms  DeleteObjects: 0.012673 ms)
+
+Exception: Error in Instantiation! The resource's PhotonView count is not the same as in incoming data.
+  at NetworkingPeer.DoInstantiate (ExitGames.Client.Photon.Hashtable evData, .PhotonPlayer photonPlayer, UnityEngine.GameObject resourceGameObject) [0x00000] in <filename unknown>:0 
+  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
+  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+UnloadTime: 0.541621 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 176 unused Assets to reduce memory usage. Loaded Objects now: 550.
+Total: 1.328255 ms (FindLiveObjects: 0.029872 ms CreateObjectMapping: 0.021121 ms MarkObjects: 0.348508 ms  DeleteObjects: 0.204277 ms)
+

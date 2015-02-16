@@ -19,9 +19,15 @@ public class MiniGameEndChecker : MonoBehaviour {
 		if (!Global.GamePlaying && !objCreated)
 		{
 			if (Global.GameResult)
+			{
+				//PhotonNetwork.Instantiate("Check_Animation", Vector3.zero, Quaternion.Euler(0,0,0), 0);
 				Instantiate(check);
+			}
 			else
+			{
+				//PhotonNetwork.Instantiate("Strike_Animation", Vector3.zero, Quaternion.Euler(0,0,0), 0);
 				Instantiate(strike);
+			}
 			objCreated = true;
 		} else if (objCreated)
 		{

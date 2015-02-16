@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Interrogation : MonoBehaviour 
 {
-	public GameObject copBubble, playersBubble, allAnswerBubbles, fader, canvas;
+	public GameObject copBubble, playersBubble, allAnswerBubbles, fader, canvas, player1Box, player2Box;
 	public Image background;
 	public Image[] strikes;
 	public Sprite bg2;
@@ -34,7 +34,8 @@ public class Interrogation : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		fillAnswerBubbles();
+		allAnswerBubbles.SetActive(false);
+
 		if (Global.GamePlayed)
 		{
 			if (Global.GameResult)
@@ -65,6 +66,21 @@ public class Interrogation : MonoBehaviour
 			fader.SetActive(false);
 			Global.GamePlayed = true;
 		}
+
+		if (!PhotonNetwork.offlineMode)
+		{
+			if (PhotonNetwork.isMasterClient)
+			{
+				Destroy(player2Box.gameObject);
+			} else
+			{
+				Destroy(player1Box.gameObject);
+			}
+		} else
+		{
+			Destroy(player2Box.gameObject);
+			Destroy(player1Box.gameObject);
+		}
 	}
 
 	void fillAnswerBubbles()
@@ -82,10 +98,11 @@ public class Interrogation : MonoBehaviour
 		}
 		for (int i = 0; i < 3; i++)
 		{
-			leftBubbles[i].GetComponentInChildren<Text>().text = leftAnswers[i];
-			rightBubbles[i].GetComponentInChildren<Text>().text = rightAnswers[i];
+			leftBubbles[i].GetComponent<PhotonView>().RPC("setStoredText", PhotonTargets.All, leftAnswers[i]);
+			rightBubbles[i].GetComponent<PhotonView>().RPC("setStoredText", PhotonTargets.All, rightAnswers[i]);
+			//leftBubbles[i].GetComponentInChildren<Text>().text = leftAnswers[i];
+			//rightBubbles[i].GetComponentInChildren<Text>().text = rightAnswers[i];
 		}
-		allAnswerBubbles.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -94,92 +111,104 @@ public class Interrogation : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.T))
 		{
 			Global.GamePlaying = true;
-			Global.GameVariable = 6;
-			Application.LoadLevel("Driver");
+			Global.GameVariable = 0;
+			Application.LoadLevel("Platformer");
 		}
 
 		if (answersAvailable && answerTimer <= 0.0f)
 		{
-			if (leftSelection < 0)
+			if (leftSelection < 0  && (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode))
 			{
-				bool leftSelected = false;
 				if (Input.GetKeyDown(KeyCode.A))
 				{
-					leftSelected = true;
-					leftSelection = 0;
+					this.GetComponent<PhotonView>().RPC("setLeftSelection", PhotonTargets.All, 0);
+					//leftSelection = 0;
 				} else if (Input.GetKeyDown(KeyCode.W))
 				{
-					leftSelected = true;
-					leftSelection = 1;
+					this.GetComponent<PhotonView>().RPC("setLeftSelection", PhotonTargets.All, 1);
+					//leftSelection = 1;
 				} else if (Input.GetKeyDown(KeyCode.D))
 				{
-					leftSelected = true;
-					leftSelection = 2;
+					this.GetComponent<PhotonView>().RPC("setLeftSelection", PhotonTargets.All, 2);
+					//leftSelection = 2;
 				}
 				
-				if (leftSelected)
+				/*if (leftSelection >= 0)
 				{
 					for (int i = 0; i < leftBubbles.Length; i++)
 					{
 						if ( i != leftSelection)
 							Destroy(leftBubbles[i]);
 					}
-				}
+				}*/
 			}
 			
-			if (rightSelection < 0)
+			if (rightSelection < 0 && (!PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode))
 			{
-				bool rightSelected = false;
 				if (Input.GetKeyDown(KeyCode.LeftArrow))
 				{
-					rightSelected = true;
-					rightSelection = 0;
+					this.GetComponent<PhotonView>().RPC("setRightSelection", PhotonTargets.All, 0);
+					//rightSelection = 0;
 				} else if (Input.GetKeyDown(KeyCode.UpArrow))
 				{
-					rightSelected = true;
-					rightSelection = 1;
+					this.GetComponent<PhotonView>().RPC("setRightSelection", PhotonTargets.All, 1);
+					//rightSelection = 1;
 				} else if (Input.GetKeyDown(KeyCode.RightArrow))
 				{
-					rightSelected = true;
-					rightSelection = 2;
+					this.GetComponent<PhotonView>().RPC("setRightSelection", PhotonTargets.All, 2);
+					//rightSelection = 2;
 				}
-				if (rightSelected)
+				/*if (rightSelection >= 0)
 				{
 					for (int i = 0; i < rightBubbles.Length; i++)
 					{
 						if ( i != rightSelection)
 							Destroy(rightBubbles[i]);
 					}
-				}
+				}*/
 			}
 			
 			if (leftSelection >= 0 && rightSelection >= 0)
 			{
 				if (endingTimer <= 0.0f)
 				{
-					Global.GamePlaying = true;
-
-					Global.LevelInstruction = answerGenerator.getInstruction();
 					Application.LoadLevel("Instruction");
 				} else
 					endingTimer -= Time.deltaTime;
 
 				if (!typeAndVarSet)
 				{
-					if (gameTypeOnLeft)
+					if (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)
 					{
-						Global.GameVariable = answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]);
-						Global.LevelToLoad = answerGenerator.getTypeNumFromString(leftBubbles[leftSelection].GetComponentInChildren<Text>().text)+5;
-						//Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
-					} else
-					{
-						Global.GameVariable = answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]);
-						Global.LevelToLoad = answerGenerator.getTypeNumFromString(rightBubbles[rightSelection].GetComponentInChildren<Text>().text)+5;
-						//Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
+						if (gameTypeOnLeft)
+						{
+							this.GetComponent<PhotonView>().RPC("setGameVariable", PhotonTargets.All, 
+							                                    answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]));
+							//Global.GameVariable = answerGenerator.getVariableNumFromString(rightAnswers[rightSelection]);
+							this.GetComponent<PhotonView>().RPC("setLevelToLoad", PhotonTargets.All, 
+							                                    answerGenerator.getTypeNumFromString(leftBubbles[leftSelection].GetComponentInChildren<Text>().text)+6);
+							//Global.LevelToLoad = answerGenerator.getTypeNumFromString(leftBubbles[leftSelection].GetComponentInChildren<Text>().text)+6;
+							//Application.LoadLevel(leftBubbles[leftSelection].GetComponentInChildren<Text>().text);
+						} else
+						{
+							this.GetComponent<PhotonView>().RPC("setGameVariable", PhotonTargets.All, 
+							                                    answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]));
+							//Global.GameVariable = answerGenerator.getVariableNumFromString(leftAnswers[leftSelection]);
+							this.GetComponent<PhotonView>().RPC("setLevelToLoad", PhotonTargets.All, 
+							                                    answerGenerator.getTypeNumFromString(rightBubbles[rightSelection].GetComponentInChildren<Text>().text)+6);
+							//Global.LevelToLoad = answerGenerator.getTypeNumFromString(rightBubbles[rightSelection].GetComponentInChildren<Text>().text)+6;
+							//Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
+						}
 					}
 					playersBubble.SetActive(true);
-					playersBubble.GetComponentInChildren<Text>().text = answerGenerator.getSentence();
+					if (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)
+						this.GetComponent<PhotonView>().RPC("setPlayersBubble", PhotonTargets.All, answerGenerator.getSentence());
 					typeAndVarSet = true;
+
+					Global.GamePlaying = true;
+					
+					if (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)
+						this.GetComponent<PhotonView>().RPC("setInstruction", PhotonTargets.All, answerGenerator.getInstruction());
 				}
 			}
 		} else if (answersAvailable && answerTimer > 0.0f)
@@ -204,6 +233,10 @@ public class Interrogation : MonoBehaviour
 						gameOverTimer -= Time.deltaTime;
 				} else
 				{
+					if (PhotonNetwork.offlineMode || PhotonNetwork.isMasterClient)
+					{
+						fillAnswerBubbles();
+					}
 					allAnswerBubbles.SetActive(true);
 					answersAvailable = true;
 					background.sprite = bg2;
@@ -211,5 +244,53 @@ public class Interrogation : MonoBehaviour
 			} else
 				beginningTimer -= Time.deltaTime;
 		}
+	}
+
+	[RPC]
+	public void setLeftSelection(int _num)
+	{
+		leftSelection = _num;
+
+		for (int i = 0; i < leftBubbles.Length; i++)
+		{
+			if ( i != leftSelection)
+				Destroy(leftBubbles[i]);
+		}
+	}
+
+	[RPC]
+	public void setRightSelection(int _num)
+	{
+		rightSelection = _num;
+
+		for (int i = 0; i < rightBubbles.Length; i++)
+		{
+			if ( i != rightSelection)
+				Destroy(rightBubbles[i]);
+		}
+	}
+
+	[RPC]
+	public void setPlayersBubble(string _str)
+	{
+		playersBubble.GetComponentInChildren<Text>().text = _str;
+	}
+
+	[RPC]
+	public void setInstruction(string _str)
+	{
+		Global.LevelInstruction = _str;
+	}
+
+	[RPC]
+	public void setLevelToLoad(int _num)
+	{
+		Global.LevelToLoad = _num;
+	}
+
+	[RPC]
+	public void setGameVariable(int _num)
+	{
+		Global.GameVariable = _num;
 	}
 }

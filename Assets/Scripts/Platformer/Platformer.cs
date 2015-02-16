@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Platformer : MonoBehaviour {
+public class Platformer : MonoBehaviour 
+{
 	public GameObject player1, player2, CatAI;
 	public Platformer_Background spawner;
 	public GameObject[] enemies;
-
 	
 	private int gameVariable;
 	private float spawnTimer = 0.8f;
@@ -48,14 +48,22 @@ public class Platformer : MonoBehaviour {
 			selectedEnemy = enemies[8];
 			break;
 		default:
-			selectedEnemy = enemies[0];
-			Instantiate(CatAI, new Vector3(-0.11f, -1.26f, -1.0f), Quaternion.Euler(0,0,0));
+			//selectedEnemy = enemies[0];
+			//Instantiate(CatAI, new Vector3(-0.11f, -1.26f, -1.0f), Quaternion.Euler(0,0,0));
 			break;
 		}
 		//Physics2D.IgnoreCollision(player1.collider2D, player2.collider2D);
 		spawner.setObs(selectedEnemy);
 		//player1.GetComponent<DriverUserControl>().setGameVariable(gameVariable);
 		//player2.GetComponent<DriverUserControl>().setGameVariable(gameVariable);
+		if ((PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)) 
+		{
+			player1.GetComponent<SyncronizedObject>().iOwn = true;
+			this.GetComponent<SyncronizedObject>().iOwn = true;
+		} else if ((!PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)) 
+		{
+			player2.GetComponent<SyncronizedObject>().iOwn = true;
+		}
 	}
 	
 	// Update is called once per frame

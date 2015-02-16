@@ -79,12 +79,12 @@ public class TheGenerator : MonoBehaviour
 
 	public string getInstruction()
 	{
-		return gameInstructions[Global.LevelToLoad-5,Global.GameVariable];
+		return gameInstructions[Global.LevelToLoad-6,Global.GameVariable];
 	}
 
 	public string getSentence()
 	{
-		return gameSentences[Global.LevelToLoad-5,Global.GameVariable];
+		return gameSentences[Global.LevelToLoad-6,Global.GameVariable];
 	}
 
 	private void loadInstructions()

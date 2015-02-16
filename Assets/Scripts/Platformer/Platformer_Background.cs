@@ -21,7 +21,7 @@ public class Platformer_Background : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Global.GamePlaying)
+		if (Global.GamePlaying && (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode))
 		{
 			if (obs != null && !init)
 			{
@@ -38,25 +38,25 @@ public class Platformer_Background : MonoBehaviour {
 					case 2:
 					case 4:
 						if (Mathf.FloorToInt(Random.Range(0, 3)) == 2)
-							Instantiate(obs, new Vector3(spawner.transform.position.x, 0.0f, -1), Quaternion.Euler(0,0,0));
-						Instantiate(plain, spawner.transform.position, Quaternion.Euler(0,0,0));
+							this.GetComponent<PhotonView>().RPC("createObs", PhotonTargets.All, new Vector3(spawner.transform.position.x, 0.0f, -1));
+						this.GetComponent<PhotonView>().RPC("createPlain", PhotonTargets.All, spawner.transform.position);
 						nextIsPlain = false;
 						break;
 					case 1:
 					case 3:
 					case 5:
 						if (Mathf.FloorToInt(Random.Range(0, 3)) == 2)
-							Instantiate(obs, new Vector3(spawner.transform.position.x, 0.0f, -1), Quaternion.Euler(0,0,0));
-						Instantiate(window, spawner.transform.position, Quaternion.Euler(0,0,0));
+							this.GetComponent<PhotonView>().RPC("createObs", PhotonTargets.All, new Vector3(spawner.transform.position.x, 0.0f, -1));
+						this.GetComponent<PhotonView>().RPC("createWindow", PhotonTargets.All, spawner.transform.position);
 						nextIsPlain = false;
 						break;
 					case 6:
-						Instantiate(plain, spawner.transform.position, Quaternion.Euler(0,0,0));
+						this.GetComponent<PhotonView>().RPC("createPlain", PhotonTargets.All, spawner.transform.position);
 						nextIsPlain = true;
 						break;
 					case 7:
 					case 8:
-						Instantiate(alley, spawner.transform.position, Quaternion.Euler(0,0,0));
+						this.GetComponent<PhotonView>().RPC("createAlley", PhotonTargets.All, spawner.transform.position);
 						nextIsPlain = true;
 						break;
 					}
@@ -67,5 +67,29 @@ public class Platformer_Background : MonoBehaviour {
 				init = true;
 			}
 		}
+	}
+
+	[RPC]
+	public void createPlain(Vector3 pos)
+	{
+		Instantiate(plain, pos, Quaternion.Euler(0,0,0));
+	}
+
+	[RPC]
+	public void createAlley(Vector3 pos)
+	{
+		Instantiate(alley, pos, Quaternion.Euler(0,0,0));
+	}
+
+	[RPC]
+	public void createWindow(Vector3 pos)
+	{
+		Instantiate(window, pos, Quaternion.Euler(0,0,0));
+	}
+
+	[RPC]
+	public void createObs(Vector3 pos)
+	{
+		Instantiate(obs, pos, Quaternion.Euler(0,0,0));
 	}
 }

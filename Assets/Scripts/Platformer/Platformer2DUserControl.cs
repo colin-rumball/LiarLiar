@@ -34,13 +34,14 @@ namespace UnitySampleAssets._2D
         {
 			if (Global.GamePlaying)
 			{
-				if (tag == "Player") {
+				if (tag == "Player" && (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)) 
+				{
 					float h = Input.GetAxis("Horizontal");
 	            // Pass all parameters to the character control script.
 	            character.Move(h, false, jump);
 	            jump = false;
 				}
-				if (tag == "Player2") {
+				if (tag == "Player2" && (!PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)) {
 					float h = Input.GetAxis("Horizontal2");
 					// Pass all parameters to the character control script.
 					character.Move(h, false, jump);
