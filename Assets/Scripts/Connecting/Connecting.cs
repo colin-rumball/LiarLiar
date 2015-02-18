@@ -22,9 +22,11 @@ public class Connecting : MonoBehaviour
 
 		if (PhotonNetwork.room != null)
 		{
-			if (PhotonNetwork.room.playerCount == 2 && PhotonNetwork.isMasterClient)
+			if (PhotonNetwork.room.playerCount == 2)
 			{
-				Application.LoadLevel("Introduction");
+				text.text = "WAITING FOR ADDITIONAL PLAYER.";
+				if (PhotonNetwork.isMasterClient)
+					PhotonNetwork.LoadLevel("Introduction");
 			} else
 			{
 				text.text = "WAITING FOR ADDITIONAL PLAYER.";

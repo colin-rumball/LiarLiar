@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Die : MonoBehaviour {
 
+	private bool alive = true;
+
 	void Start()
 	{
 
@@ -10,16 +12,24 @@ public class Die : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (Global.GamePlaying)
+		if (Global.GamePlaying && alive)
 		{
 			if(other.tag == "Player" ||other.tag == "Player2")
 			{
-				Destroy(this);
-				Global.GameResult = false;
-				Global.GamePlaying = false;
+				this.GetComponent<PhotonView>().RPC("miniGameOver", PhotonTargets.All, null);
+				alive = false;
+				//Global.GameResult = false;
+				//Global.GamePlaying = false;
 				//Application.LoadLevel("Interrogation");
 			}
 		}
+	}
+
+	[RPC]
+	public void miniGameOver()
+	{
+		Global.GameResult = false;
+		Global.GamePlaying = false;
 	}
 
 }

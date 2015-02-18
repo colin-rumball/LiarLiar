@@ -2,13 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameOver : MonoBehaviour {
-
+public class GameOver : MonoBehaviour 
+{
 	public Text gamesWon;
+	private NetworkManager m_networkManager;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		gamesWon.text = Global.GamesWon.ToString();;
+		m_networkManager = this.GetComponent<NetworkManager>();
 	}
 	
 	// Update is called once per frame
@@ -18,6 +21,7 @@ public class GameOver : MonoBehaviour {
 
 	public void ReturnToMainMenu()
 	{
+		m_networkManager.Disconnect();
 		Application.LoadLevel("MainMenu");
 	}
 }

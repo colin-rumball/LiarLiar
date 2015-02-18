@@ -30,6 +30,7 @@ public class Interrogation : MonoBehaviour
 	private float answerTimer = 1.5f;
 	private float gameOverTimer = 3.0f;
 
+	private string playersResponse = "";
 	
 	// Use this for initialization
 	void Start ()
@@ -172,9 +173,17 @@ public class Interrogation : MonoBehaviour
 			{
 				if (endingTimer <= 0.0f)
 				{
-					Application.LoadLevel("Instruction");
+					PhotonNetwork.LoadLevel("Instruction");
 				} else
+				{
+					if (playersResponse != "")
+					{
+						playersBubble.SetActive(true);
+						playersBubble.GetComponentInChildren<Text>().text = playersResponse;
+						playersResponse = "";
+					}
 					endingTimer -= Time.deltaTime;
+				}
 
 				if (!typeAndVarSet)
 				{
@@ -199,16 +208,13 @@ public class Interrogation : MonoBehaviour
 							//Global.LevelToLoad = answerGenerator.getTypeNumFromString(rightBubbles[rightSelection].GetComponentInChildren<Text>().text)+6;
 							//Application.LoadLevel(rightBubbles[rightSelection].GetComponentInChildren<Text>().text);
 						}
-					}
-					playersBubble.SetActive(true);
-					if (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)
-						this.GetComponent<PhotonView>().RPC("setPlayersBubble", PhotonTargets.All, answerGenerator.getSentence());
-					typeAndVarSet = true;
 
-					Global.GamePlaying = true;
-					
-					if (PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)
 						this.GetComponent<PhotonView>().RPC("setInstruction", PhotonTargets.All, answerGenerator.getInstruction());
+						this.GetComponent<PhotonView>().RPC("setPlayersBubble", PhotonTargets.All, answerGenerator.getSentence());
+					}
+
+					typeAndVarSet = true;
+					Global.GamePlaying = true;
 				}
 			}
 		} else if (answersAvailable && answerTimer > 0.0f)
@@ -273,7 +279,7 @@ public class Interrogation : MonoBehaviour
 	[RPC]
 	public void setPlayersBubble(string _str)
 	{
-		playersBubble.GetComponentInChildren<Text>().text = _str;
+		playersResponse = _str;
 	}
 
 	[RPC]

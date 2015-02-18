@@ -15,6 +15,8 @@ public class Platformer : MonoBehaviour
 
 	void Start () 
 	{
+		//PhotonNetwork.offlineMode = true;
+		Global.GamePlaying = true;
 		Global.GameCounter = 0;
 		gameVariable = Global.GameVariable;
 		switch (gameVariable)
@@ -56,13 +58,23 @@ public class Platformer : MonoBehaviour
 		spawner.setObs(selectedEnemy);
 		//player1.GetComponent<DriverUserControl>().setGameVariable(gameVariable);
 		//player2.GetComponent<DriverUserControl>().setGameVariable(gameVariable);
-		if ((PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)) 
+		if (!PhotonNetwork.offlineMode)
 		{
-			player1.GetComponent<SyncronizedObject>().iOwn = true;
-			this.GetComponent<SyncronizedObject>().iOwn = true;
-		} else if ((!PhotonNetwork.isMasterClient || PhotonNetwork.offlineMode)) 
-		{
-			player2.GetComponent<SyncronizedObject>().iOwn = true;
+			GameObject netPlayer1, netPlayer2;
+			if (PhotonNetwork.isMasterClient) 
+			{
+				netPlayer1 = (GameObject) PhotonNetwork.Instantiate("Platformer_Player1", player1.transform.position, player1.transform.rotation, 0);
+				netPlayer1.GetComponent<Rigidbody2D>().isKinematic = false;
+				netPlayer1.GetComponent<SyncronizedObject>().setIOwn(true);
+				this.GetComponent<SyncronizedObject>().setIOwn(true);
+			} else
+			{
+				netPlayer2 = (GameObject) PhotonNetwork.Instantiate("Platformer_Player2", player2.transform.position, player1.transform.rotation, 0);
+				netPlayer2.GetComponent<Rigidbody2D>().isKinematic = false;
+				netPlayer2.GetComponent<SyncronizedObject>().setIOwn(true);
+			}
+			Destroy(player1.gameObject);
+			Destroy(player2.gameObject);
 		}
 	}
 	
@@ -88,12 +100,20 @@ public class Platformer : MonoBehaviour
 
 			if (gameTimer <= 0.0f || Global.GameCounter >= 3)
 			{
-				Global.GameResult = true;
-				Global.GamePlaying = false;
+				this.GetComponent<PhotonView>().RPC("miniGameWon", PhotonTargets.All, null);
+				//Global.GameResult = true;
+				//Global.GamePlaying = false;
 				//Application.LoadLevel("Interrogation");
 			} else
 				gameTimer -= Time.deltaTime;	
 		}
+	}
+
+	[RPC]
+	public void miniGameWon()
+	{
+		Global.GameResult = true;
+		Global.GamePlaying = false;
 	}
 
 	/*void setUpEnemy(GameObject obj)

@@ -16,7 +16,7 @@ public class Instruction : MonoBehaviour {
 	void Update () {
 		if (timer <= 0.0f)
 		{
-			Application.LoadLevel(Global.LevelToLoad);
+			PhotonNetwork.LoadLevel(Global.LevelToLoad);
 		} else
 			timer -= Time.deltaTime;
 	}

@@ -17,17 +17,17 @@ Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLi
 Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.083 seconds
+- Completed reload, in  0.074 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: G:\Libraries\Documents\Unity Projects\LiarLiar\Release\LiarLiar_Data\Managed\System.dll (this message is harmless)
-UnloadTime: 3.664923 ms
+UnloadTime: 4.294650 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 296.
-Total: 1.009920 ms (FindLiveObjects: 0.011466 ms CreateObjectMapping: 0.013276 ms MarkObjects: 0.155395 ms  DeleteObjects: 0.012673 ms)
+Total: 1.175574 ms (FindLiveObjects: 0.014483 ms CreateObjectMapping: 0.014181 ms MarkObjects: 0.241692 ms  DeleteObjects: 0.022026 ms)
 
 Connect
  
@@ -45,87 +45,229 @@ OnJoinedRoom
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 0.436013 ms
+UnloadTime: 0.597744 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 340.
-Total: 1.128806 ms (FindLiveObjects: 0.015690 ms CreateObjectMapping: 0.015992 ms MarkObjects: 0.267340 ms  DeleteObjects: 0.013276 ms)
+Total: 1.248595 ms (FindLiveObjects: 0.013879 ms CreateObjectMapping: 0.026553 ms MarkObjects: 0.324369 ms  DeleteObjects: 0.015086 ms)
 
-UnloadTime: 0.551880 ms
+UnloadTime: 0.697016 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 534.
-Total: 1.548826 ms (FindLiveObjects: 0.034398 ms CreateObjectMapping: 0.020820 ms MarkObjects: 0.376570 ms  DeleteObjects: 0.051899 ms)
+Total: 1.443519 ms (FindLiveObjects: 0.024440 ms CreateObjectMapping: 0.017500 ms MarkObjects: 0.331912 ms  DeleteObjects: 0.055519 ms)
 
-UnloadTime: 1.520161 ms
+UnloadTime: 1.331875 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 298.
-Total: 1.538567 ms (FindLiveObjects: 0.015388 ms CreateObjectMapping: 0.019914 ms MarkObjects: 0.312300 ms  DeleteObjects: 0.182853 ms)
+Total: 1.508091 ms (FindLiveObjects: 0.011767 ms CreateObjectMapping: 0.015992 ms MarkObjects: 0.275185 ms  DeleteObjects: 0.185267 ms)
 
-UnloadTime: 0.457134 ms
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 428.
-Total: 1.379551 ms (FindLiveObjects: 0.017500 ms CreateObjectMapping: 0.022328 ms MarkObjects: 0.269453 ms  DeleteObjects: 0.011466 ms)
-
-Exception: Error in Instantiation! The resource's PhotonView count is not the same as in incoming data.
-  at NetworkingPeer.DoInstantiate (ExitGames.Client.Photon.Hashtable evData, .PhotonPlayer photonPlayer, UnityEngine.GameObject resourceGameObject) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-UnloadTime: 0.527138 ms
+UnloadTime: 0.528344 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 550.
-Total: 1.223552 ms (FindLiveObjects: 0.019009 ms CreateObjectMapping: 0.018406 ms MarkObjects: 0.341568 ms  DeleteObjects: 0.091125 ms)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 562.
+Total: 1.622752 ms (FindLiveObjects: 0.045260 ms CreateObjectMapping: 0.022026 ms MarkObjects: 0.505714 ms  DeleteObjects: 0.019009 ms)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Interrogation.setPlayersBubble (System.String _str) [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRPC (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
  
-(Filename:  Line: -1)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 0.834610 ms
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Had to lookup view that wasn't in photonViewList: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Strike_Animation(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.757063 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 129 unused Assets to reduce memory usage. Loaded Objects now: 636.
+Total: 1.503866 ms (FindLiveObjects: 0.031682 ms CreateObjectMapping: 0.025346 ms MarkObjects: 0.380492 ms  DeleteObjects: 0.153585 ms)
+
+Received OnSerialization for view ID 1001. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received OnSerialization for view ID 1001. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received OnSerialization for view ID 1001. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 1.084148 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 320.
-Total: 1.185231 ms (FindLiveObjects: 0.010259 ms CreateObjectMapping: 0.015690 ms MarkObjects: 0.249236 ms  DeleteObjects: 0.130653 ms)
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 402.
+Total: 1.446536 ms (FindLiveObjects: 0.012974 ms CreateObjectMapping: 0.018707 ms MarkObjects: 0.293893 ms  DeleteObjects: 0.206389 ms)
 
-UnloadTime: 0.444461 ms
+UnloadTime: 0.474031 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 552.
-Total: 1.073587 ms (FindLiveObjects: 0.018104 ms CreateObjectMapping: 0.029872 ms MarkObjects: 0.303247 ms  DeleteObjects: 0.012673 ms)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 402.
+Total: 1.882851 ms (FindLiveObjects: 0.044657 ms CreateObjectMapping: 0.032587 ms MarkObjects: 0.517180 ms  DeleteObjects: 0.019009 ms)
 
-Exception: Error in Instantiation! The resource's PhotonView count is not the same as in incoming data.
-  at NetworkingPeer.DoInstantiate (ExitGames.Client.Photon.Hashtable evData, .PhotonPlayer photonPlayer, UnityEngine.GameObject resourceGameObject) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-UnloadTime: 0.541621 ms
+UnloadTime: 0.502998 ms
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 176 unused Assets to reduce memory usage. Loaded Objects now: 550.
-Total: 1.328255 ms (FindLiveObjects: 0.029872 ms CreateObjectMapping: 0.021121 ms MarkObjects: 0.348508 ms  DeleteObjects: 0.204277 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 592.
+Total: 1.508091 ms (FindLiveObjects: 0.020819 ms CreateObjectMapping: 0.019914 ms MarkObjects: 0.363897 ms  DeleteObjects: 0.016293 ms)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Poop(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Poop(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Poop(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Poop(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Poop(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Had to lookup view that wasn't in photonViewList: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Strike_Animation(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.984272 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 129 unused Assets to reduce memory usage. Loaded Objects now: 636.
+Total: 1.433561 ms (FindLiveObjects: 0.059140 ms CreateObjectMapping: 0.028665 ms MarkObjects: 0.389544 ms  DeleteObjects: 0.140610 ms)
+
+Received OnSerialization for view ID 1002. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.990005 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 400.
+Total: 1.312262 ms (FindLiveObjects: 0.012673 ms CreateObjectMapping: 0.019009 ms MarkObjects: 0.289065 ms  DeleteObjects: 0.167163 ms)
+
+UnloadTime: 0.467393 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 592.
+Total: 1.245578 ms (FindLiveObjects: 0.021423 ms CreateObjectMapping: 0.020819 ms MarkObjects: 0.328593 ms  DeleteObjects: 0.013578 ms)
+
+Received OnSerialization for view ID 1. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received OnSerialization for view ID 3. We have no such PhotonView! Ignored this if you're leaving a room. State: Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Platformer_Ghost(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+PhotonView register is ignored, because viewID is 0. No id assigned yet to: View (0)0 on Rooftop_Alley(Clone) (scene)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+OnDisconnectedFromPhoton
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 

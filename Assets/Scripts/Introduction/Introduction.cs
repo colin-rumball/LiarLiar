@@ -22,7 +22,7 @@ public class Introduction : MonoBehaviour
 	{
 		if (GotoInterrogation) 
 		{
-			Application.LoadLevel ("Interrogation");
+			PhotonNetwork.LoadLevel("Interrogation");
 		}
 
 		if (stage2 && !stage2Done)

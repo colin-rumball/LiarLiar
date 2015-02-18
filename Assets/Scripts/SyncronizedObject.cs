@@ -4,10 +4,12 @@ using System.Collections;
 public class SyncronizedObject : MonoBehaviour 
 {
 	Vector3 realPosition = Vector3.zero;
-	public bool iOwn;
+	private Animator anim;
+	private bool iOwn = false;
 	// Use this for initialization
 	void Start () {
 		realPosition = transform.position;
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -17,6 +19,10 @@ public class SyncronizedObject : MonoBehaviour
 		{
 			// Lerp between the current position and the position provided from the server.
 			transform.position = Vector3.Lerp (transform.position, realPosition, 0.1f);
+			if (anim != null)
+			{
+				anim.SetFloat("Speed", Mathf.Abs(transform.position.x-realPosition.x));
+			}
 		}
 	}
 
@@ -28,14 +34,26 @@ public class SyncronizedObject : MonoBehaviour
 		// If sending information
 		if (stream.isWriting) 
 		{
-			stream.SendNext(transform.position);
-			stream.SendNext(transform.rotation);
+			Vector3 pos = transform.localPosition;
+			stream.Serialize(ref pos);
+
+			Vector3 scale = transform.localScale;
+			stream.Serialize(ref scale);
+			//stream.SendNext(transform.position);
+			//stream.SendNext(transform.rotation);
 			//stream.SendNext(anim.speed);
 			//stream.SendNext(myCharScript.currentAnimation);
 		}
 		// If receiving information.
 		else 
 		{
+			Vector3 pos = Vector3.zero;
+			stream.Serialize(ref pos);  // pos gets filled-in. must be used somewhere
+			realPosition = pos;
+
+			Vector3 scale = transform.localScale;
+			stream.Serialize(ref scale);
+			transform.localScale = scale;
 			// If this character has not spawned yet then set it's name and position.
 			/*if (!spawned)
 			{
@@ -43,12 +61,17 @@ public class SyncronizedObject : MonoBehaviour
 				transform.position = (Vector3) stream.ReceiveNext();
 				spawned = true;
 			} else*/
-			{
-				realPosition = (Vector3) stream.ReceiveNext();
-			}
-			transform.rotation = (Quaternion) stream.ReceiveNext();
+			//{
+				//realPosition = (Vector3) stream.ReceiveNext();
+			//}
+			//transform.rotation = (Quaternion) stream.ReceiveNext();
 			//anim.speed = (float) stream.ReceiveNext();
 			//anim.Play((string) stream.ReceiveNext());
 		}
+	}
+
+	public void setIOwn(bool b)
+	{
+		iOwn = b;
 	}
 }

@@ -33,7 +33,7 @@ public class MiniGameEndChecker : MonoBehaviour {
 		{
 			if (endTimer <= 0.0f)
 			{
-				Application.LoadLevel("Interrogation");
+				PhotonNetwork.LoadLevel("Interrogation");
 			} else
 				endTimer -= Time.deltaTime;
 		}
