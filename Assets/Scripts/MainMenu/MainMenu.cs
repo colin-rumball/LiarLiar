@@ -23,4 +23,9 @@ public class MainMenu : MonoBehaviour
 	{
 		Application.LoadLevel("Leaderboard");
 	}
+
+	public void Quit()
+	{
+		Application.Quit();
+	}
 }

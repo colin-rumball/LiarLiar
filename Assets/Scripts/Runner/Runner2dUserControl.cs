@@ -27,6 +27,11 @@ namespace UnitySampleAssets._2D
 				if (tag == "Player2") {
 					jump = Input.GetButtonDown("Jump2");
 				}
+			} else
+			{
+				this.GetComponent<Animator>().speed = 0;
+				this.GetComponent<Rigidbody2D>().isKinematic = true;
+				this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 			}
 		}
 		

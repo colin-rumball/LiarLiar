@@ -13,7 +13,7 @@ public class HowToPlay : MonoBehaviour
 	private string[] textFields = 
 		{"You two are criminals that have been caught by the police while committing a crime. Your only way out of this is to lie through your teeth.",
 		"Together you will create a lie to tell the police what you were doing. Each of you will select a word to contribute and the lie will be born.",
-		"Once your selections have been made you will have to play out the lie, no matter how ridiculous it is, otherwise the police will not believe you."};
+		"Once your selections have been made you will recount the lie by playing it, no matter how ridiculous it is, otherwise the police will not believe you. Three strikes and it's jail for you."};
 
 	void Start () 
 	{
