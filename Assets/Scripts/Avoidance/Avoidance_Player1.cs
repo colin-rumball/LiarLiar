@@ -74,7 +74,8 @@ public class Avoidance_Player1 : MonoBehaviour {
 					anim.SetFloat("Speed", SPEED);
 				}
 			}
-		}
+		} else
+			anim.speed = 0;
 	}
 
 	private void Flip()

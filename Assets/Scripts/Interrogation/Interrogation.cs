@@ -62,7 +62,8 @@ public class Interrogation : MonoBehaviour
 			gamesWon.text = Global.GamesWon.ToString();
 		} else
 		{
-			fader.SetActive(false);
+			Destroy(fader.gameObject);
+			//fader.SetActive(false);
 			Global.GamePlayed = true;
 		}
 	}
@@ -91,12 +92,12 @@ public class Interrogation : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyDown(KeyCode.T))
+		/*if (Input.GetKeyDown(KeyCode.T))
 		{
 			Global.GamePlaying = true;
 			Global.GameVariable = 3;
 			Application.LoadLevel("Avoidance");
-		}
+		}*/
 
 		if (answersAvailable && answerTimer <= 0.0f)
 		{
