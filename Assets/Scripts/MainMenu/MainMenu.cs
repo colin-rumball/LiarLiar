@@ -16,11 +16,11 @@ public class MainMenu : MonoBehaviour
 
 	public void HowToPlay()
 	{
-		//Application.LoadLevel("Introduction");
+		Application.LoadLevel("HowToPlay");
 	}
 
-	public void LeaderBoards()
+	public void LeaderBoard()
 	{
-		//Application.LoadLevel("Introduction");
+		Application.LoadLevel("Leaderboard");
 	}
 }

@@ -94,8 +94,8 @@ public class Interrogation : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.T))
 		{
 			Global.GamePlaying = true;
-			Global.GameVariable = 6;
-			Application.LoadLevel("Driver");
+			Global.GameVariable = 3;
+			Application.LoadLevel("Avoidance");
 		}
 
 		if (answersAvailable && answerTimer <= 0.0f)

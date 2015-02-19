@@ -9,8 +9,8 @@ public class Avoidance : MonoBehaviour
 
 	private int gameVariable;
 	private Sprite selectedSprite;
-	private float spawnTimer = 1.5f;
-	private float gameTimer = 9.0f;
+	private float spawnTimer = 1.3f;
+	private float gameTimer = 7.0f;
 
 	void Start () {
 		gameVariable = Global.GameVariable;
@@ -62,7 +62,7 @@ public class Avoidance : MonoBehaviour
 					Instantiate(tombstone, pos, Quaternion.Euler(0.0f, 0.0f, 0.0f));
 				obj.GetComponent<SpriteRenderer>().sprite = selectedSprite;
 
-				spawnTimer = 1.5f;
+				spawnTimer = 1.3f;
 			} else
 				spawnTimer -= Time.deltaTime;
 

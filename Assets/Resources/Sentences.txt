@@ -2,7 +2,7 @@
 We jumped over cat poop.|
   |
 We jumped over banana peels.|
-We avoided death by jumping over a bunch of traps.|
+We avoided death by jumping over a bunch of Zombies.|
   |
 We jumped over terrifying ghosts.|
 We jumped over some lasers.|
@@ -13,8 +13,8 @@ We tried to catch up to our cat.|
 We ran down the street trying not to slip on banana peels.|
 We ran for our lives away from a murder.|
   |
-Temporary!|
-Temporary!|
+We ran for our lives away from a Ghost.|
+We ran for our lives from a guard dog.|
   |
 We ran from our mother in law.|
 We ran over rabid cats.|
